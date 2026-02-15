@@ -1,9 +1,11 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { useState, useTransition } from 'react'
+import { useState, useEffect, useTransition } from 'react'
 import { Button } from '@/components/ui/button'
 import { Languages } from 'lucide-react'
+
+const SECTIONS = ['hero', 'dfa', 'mealy', 'hangul', 'dokkaebi'] as const
 
 function setLocaleCookie(locale: string) {
   document.cookie = `locale=${locale};path=/;max-age=31536000`
@@ -11,6 +13,7 @@ function setLocaleCookie(locale: string) {
 
 export function Navigation() {
   const t = useTranslations('nav')
+  const [activeSection, setActiveSection] = useState<string>('hero')
   const [locale, setLocale] = useState<string>(() => {
     if (typeof document !== 'undefined') {
       const match = document.cookie.match(/locale=(\w+)/)
@@ -19,6 +22,26 @@ export function Navigation() {
     return 'ko'
   })
   const [, startTransition] = useTransition()
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        }
+      },
+      { threshold: 0.5 }
+    )
+
+    for (const id of SECTIONS) {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   const toggleLocale = () => {
     const newLocale = locale === 'ko' ? 'en' : 'ko'
@@ -53,7 +76,11 @@ export function Navigation() {
               variant="ghost"
               size="sm"
               onClick={() => scrollTo(section)}
-              className="text-base"
+              className={`text-base transition-colors ${
+                activeSection === section
+                  ? 'text-blue-400 bg-blue-500/10'
+                  : ''
+              }`}
             >
               {t(section)}
             </Button>
