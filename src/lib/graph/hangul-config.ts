@@ -113,7 +113,7 @@ export const hangulEdges: Edge[] = [
     source: 'V',
     target: 'I',
     type: 'transitionEdge',
-    data: { label: 'y,b,l / 1', symbols: ['y', 'b', 'l'] },
+    data: { label: 'y,b,l,o,O,p,P / 1', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P'] },
   },
   // O compound vowels
   {
@@ -182,6 +182,14 @@ export const hangulEdges: Edge[] = [
     target: 'A',
     type: 'transitionEdge',
     data: { label: 'k,i,j,u,m / d.01', symbols: ['k', 'i', 'j', 'u', 'm'], isDokkaebi: true },
+  },
+  // 종성 -> I (dokkaebi with terminal vowels)
+  {
+    id: 'KNRL-vowel-I',
+    source: 'K',
+    target: 'I',
+    type: 'transitionEdge',
+    data: { label: 'y,b,l,o,O,p,P / d.01', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P'], isDokkaebi: true },
   },
   // 종성 -> new syllable (consonant: .0)
   {

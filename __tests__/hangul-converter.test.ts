@@ -43,6 +43,19 @@ describe('HangulConverter', () => {
     expect(converter.convert('rksk')).toBe('가나')
   })
 
+  it('should convert with ㅐ(o), ㅒ(O), ㅔ(p), ㅖ(P) vowels', () => {
+    expect(converter.convert('ro')).toBe('개')     // ㄱ + ㅐ
+    expect(converter.convert('rO')).toBe('걔')     // ㄱ + ㅒ
+    expect(converter.convert('rp')).toBe('게')     // ㄱ + ㅔ
+    expect(converter.convert('rP')).toBe('계')     // ㄱ + ㅖ
+    expect(converter.convert('tpdy')).toBe('세요')   // ㅔ in multi-syllable
+  })
+
+  it('should handle dokkaebi with new vowels (o,O,p,P)', () => {
+    // r(ㄱ) + k(ㅏ) + f(ㄹ) + p(ㅔ) → 갈 → 가 + 레 (dokkaebi)
+    expect(converter.convert('rkfp')).toBe('가레')
+  })
+
   it('should convert "rkfk" to "갈라" (dokkaebi case)', () => {
     // r(ㄱ) + k(ㅏ) + f(ㄹ) -> 갈, then f becomes final
     // but next is k(ㅏ) -> dokkaebi: 갈 loses ㄹ -> 가, ㄹ becomes 라

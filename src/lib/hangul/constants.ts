@@ -3,7 +3,7 @@ import type { MealyConfig } from '@/lib/automata/types'
 export const STATES = ['S', 'V', 'O', 'U', 'A', 'I', 'K', 'N', 'R', 'L']
 
 export const C = 'rsefaqtdwczxvgREQTW'
-export const V = 'kijuhynbml'
+export const V = 'kijuhynbmloOpP'
 export const SYMBOLS_IN = C + V
 export const SYMBOLS_OUT = '012.d'
 
@@ -22,7 +22,7 @@ export const TRANSFERS_ME: MealyConfig['transfers'] = [
   ['V', 'h', 'O', '1'],
   ['V', 'n', 'U', '1'],
   ['V', 'kijum', 'A', '1'],
-  ['V', 'ybl', 'I', '1'],
+  ['V', 'ybloOpP', 'I', '1'],
   ['O', 'k', 'A', '1'],
   ['U', 'j', 'A', '1'],
   [['O', 'U', 'A'], 'l', 'I', '1'],
@@ -34,7 +34,7 @@ export const TRANSFERS_ME: MealyConfig['transfers'] = [
   [['K', 'N', 'R', 'L'], 'h', 'O', 'd.01'],
   [['K', 'N', 'R', 'L'], 'n', 'U', 'd.01'],
   [['K', 'N', 'R', 'L'], 'kijum', 'A', 'd.01'],
-  [['K', 'N', 'R', 'L'], 'ybl', 'I', 'd.01'],
+  [['K', 'N', 'R', 'L'], 'ybloOpP', 'I', 'd.01'],
   ['K', 't', 'L', '2'],
   ['K', strDiff(C, 't'), 'V', '.0'],
   ['N', 'wg', 'L', '2'],

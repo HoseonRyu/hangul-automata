@@ -1,5 +1,13 @@
 import { FIRST, MIDDLE, LAST } from './constants'
 
+// 단일 키로 입력되는 복합 모음 → MIDDLE 배열 키 매핑
+const VOWEL_ALIASES: Record<string, string> = {
+  'o': 'kl',  // ㅐ
+  'O': 'il',  // ㅒ
+  'p': 'jl',  // ㅔ
+  'P': 'ul',  // ㅖ
+}
+
 export function strDiff(str1: string, str2: string): string {
   let ret = ''
   for (const c of str1) {
@@ -23,6 +31,8 @@ export function hangulChar(query: string, code: string): string {
       lChr += query[i]
     }
   }
+  // 단일 키 모음을 MIDDLE 배열에서 찾을 수 있도록 정규화
+  mChr = VOWEL_ALIASES[mChr] ?? mChr
   const f = FIRST.indexOf(fChr)
   const m = MIDDLE.indexOf(mChr)
   const l = LAST.indexOf(lChr)
