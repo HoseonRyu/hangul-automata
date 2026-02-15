@@ -40,6 +40,85 @@ export function MealySection() {
       <p className="text-muted-foreground mb-4">{t('description')}</p>
       <p className="text-sm text-muted-foreground mb-6 italic">{t('diff')}</p>
 
+      {/* Theory + Example 6-tuple side by side */}
+      <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 rounded-lg bg-muted/30 border border-border/50">
+          <p className="text-sm font-medium mb-2">{t('theory')}</p>
+          <ul className="text-sm text-muted-foreground space-y-1 font-mono">
+            <li>{t('theoryS')}</li>
+            <li>{t('theoryS0')}</li>
+            <li>{t('theorySigma')}</li>
+            <li>{t('theoryLambda')}</li>
+            <li>{t('theoryT')}</li>
+            <li>{t('theoryG')}</li>
+          </ul>
+        </div>
+
+        <div className="p-4 rounded-lg bg-blue-500/5 border border-blue-500/20">
+          <p className="text-sm font-medium mb-2 text-blue-400">{t('exampleConfig')}</p>
+          <ul className="text-sm space-y-1 font-mono">
+            <li>
+              <span className="text-muted-foreground">S = </span>
+              {'{ '}
+              <span className="text-blue-400">q0</span>
+              {', '}
+              <span className="text-blue-400">q1</span>
+              {', '}
+              <span className="text-blue-400">q2</span>
+              {' }'}
+            </li>
+            <li>
+              <span className="text-muted-foreground">S₀ = </span>
+              <span className="text-blue-400">q0</span>
+            </li>
+            <li>
+              <span className="text-muted-foreground">Σ = </span>
+              {'{ '}
+              <span className="text-foreground">0</span>
+              {', '}
+              <span className="text-foreground">1</span>
+              {' }'}
+            </li>
+            <li>
+              <span className="text-muted-foreground">Λ = </span>
+              {'{ '}
+              <span className="text-green-400">a</span>
+              {', '}
+              <span className="text-green-400">b</span>
+              {', '}
+              <span className="text-green-400">c</span>
+              {', '}
+              <span className="text-green-400">d</span>
+              {' }'}
+            </li>
+          </ul>
+          <div className="mt-3 pt-3 border-t border-blue-500/10 grid grid-cols-2 gap-x-6">
+            <div>
+              <p className="text-xs text-muted-foreground mb-1.5">{t('exampleT')}</p>
+              <div className="space-y-0.5 text-sm font-mono">
+                <div><span className="text-muted-foreground">T(</span>q0, 0<span className="text-muted-foreground">) = </span>q1</div>
+                <div><span className="text-muted-foreground">T(</span>q0, 1<span className="text-muted-foreground">) = </span>q1</div>
+                <div><span className="text-muted-foreground">T(</span>q1, 0<span className="text-muted-foreground">) = </span>q1</div>
+                <div><span className="text-muted-foreground">T(</span>q1, 1<span className="text-muted-foreground">) = </span>q2</div>
+                <div><span className="text-muted-foreground">T(</span>q2, 0<span className="text-muted-foreground">) = </span>q0</div>
+                <div><span className="text-muted-foreground">T(</span>q2, 1<span className="text-muted-foreground">) = </span>q0</div>
+              </div>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground mb-1.5">{t('exampleG')}</p>
+              <div className="space-y-0.5 text-sm font-mono">
+                <div><span className="text-muted-foreground">G(</span>q0, 0<span className="text-muted-foreground">) = </span><span className="text-green-400">a</span></div>
+                <div><span className="text-muted-foreground">G(</span>q0, 1<span className="text-muted-foreground">) = </span><span className="text-green-400">a</span></div>
+                <div><span className="text-muted-foreground">G(</span>q1, 0<span className="text-muted-foreground">) = </span><span className="text-green-400">b</span></div>
+                <div><span className="text-muted-foreground">G(</span>q1, 1<span className="text-muted-foreground">) = </span><span className="text-green-400">c</span></div>
+                <div><span className="text-muted-foreground">G(</span>q2, 0<span className="text-muted-foreground">) = </span><span className="text-green-400">d</span></div>
+                <div><span className="text-muted-foreground">G(</span>q2, 1<span className="text-muted-foreground">) = </span><span className="text-green-400">d</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <div className="lg:col-span-3">
           <AutomataGraph
