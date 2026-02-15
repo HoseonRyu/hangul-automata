@@ -15,9 +15,10 @@ const config = {
 }
 
 describe('DFA', () => {
-  it('should accept "00100010"', () => {
+  it('should reject "00100010" (ends at q1, not final)', () => {
     const dfa = new DFA(config)
-    expect(dfa.sequence('00100010')).toBe(true)
+    // q1→q2→q2→q3→q1→q2→q2→q3→q1 (q1 is not final)
+    expect(dfa.sequence('00100010')).toBe(false)
   })
 
   it('should accept "0" (transitions to q2 which is final)', () => {
