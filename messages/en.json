@@ -20,6 +20,8 @@
     "theoryDelta": "δ: Q × Σ → Q transition function",
     "theoryQ0": "q₀: Start state",
     "theoryF": "F ⊆ Q: Set of accept states",
+    "exampleConfig": "5-tuple of this example",
+    "exampleDelta": "Transition function δ",
     "inputPlaceholder": "Enter a string of 0s and 1s",
     "accepted": "Accepted",
     "rejected": "Rejected",

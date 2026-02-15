@@ -20,6 +20,8 @@
     "theoryDelta": "δ: Q × Σ → Q 전이 함수",
     "theoryQ0": "q₀: 시작 상태",
     "theoryF": "F ⊆ Q: 최종(수락) 상태의 집합",
+    "exampleConfig": "이 예시의 5-tuple 구성",
+    "exampleDelta": "전이 함수 δ",
     "inputPlaceholder": "0과 1로 이루어진 문자열 입력",
     "accepted": "수락 (Accept)",
     "rejected": "거부 (Reject)",

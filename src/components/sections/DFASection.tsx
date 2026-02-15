@@ -35,16 +35,83 @@ export function DFASection() {
       <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('title')}</h2>
       <p className="text-muted-foreground mb-6">{t('description')}</p>
 
-      {/* Theory */}
-      <div className="mb-8 p-4 rounded-lg bg-muted/30 border border-border/50">
-        <p className="text-sm font-medium mb-2">{t('theory')}</p>
-        <ul className="text-sm text-muted-foreground space-y-1 font-mono">
-          <li>{t('theoryQ')}</li>
-          <li>{t('theorySigma')}</li>
-          <li>{t('theoryDelta')}</li>
-          <li>{t('theoryQ0')}</li>
-          <li>{t('theoryF')}</li>
-        </ul>
+      {/* Theory + Example 5-tuple side by side */}
+      <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-4 rounded-lg bg-muted/30 border border-border/50">
+          <p className="text-sm font-medium mb-2">{t('theory')}</p>
+          <ul className="text-sm text-muted-foreground space-y-1 font-mono">
+            <li>{t('theoryQ')}</li>
+            <li>{t('theorySigma')}</li>
+            <li>{t('theoryDelta')}</li>
+            <li>{t('theoryQ0')}</li>
+            <li>{t('theoryF')}</li>
+          </ul>
+        </div>
+
+        <div className="p-4 rounded-lg bg-blue-500/5 border border-blue-500/20">
+          <p className="text-sm font-medium mb-2 text-blue-400">{t('exampleConfig')}</p>
+          <ul className="text-sm space-y-1 font-mono">
+            <li>
+              <span className="text-muted-foreground">Q = </span>
+              {'{ '}
+              <span className="text-blue-400">q1</span>
+              {', '}
+              <span className="text-blue-400">q2</span>
+              {', '}
+              <span className="text-blue-400">q3</span>
+              {' }'}
+            </li>
+            <li>
+              <span className="text-muted-foreground">Σ = </span>
+              {'{ '}
+              <span className="text-foreground">0</span>
+              {', '}
+              <span className="text-foreground">1</span>
+              {' }'}
+            </li>
+            <li>
+              <span className="text-muted-foreground">q₀ = </span>
+              <span className="text-blue-400">q1</span>
+            </li>
+            <li>
+              <span className="text-muted-foreground">F = </span>
+              {'{ '}
+              <span className="text-green-400">q2</span>
+              {', '}
+              <span className="text-green-400">q3</span>
+              {' }'}
+            </li>
+          </ul>
+          <div className="mt-3 pt-3 border-t border-blue-500/10">
+            <p className="text-xs text-muted-foreground mb-1.5">{t('exampleDelta')}</p>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-sm font-mono">
+              <span>
+                <span className="text-muted-foreground">δ(</span>
+                q1, 0
+                <span className="text-muted-foreground">) = </span>
+                q2
+              </span>
+              <span>
+                <span className="text-muted-foreground">δ(</span>
+                q2, 0
+                <span className="text-muted-foreground">) = </span>
+                q2
+              </span>
+              <span>
+                <span className="text-muted-foreground">δ(</span>
+                q2, 1
+                <span className="text-muted-foreground">) = </span>
+                q3
+              </span>
+              <span>
+                <span className="text-muted-foreground">δ(</span>
+                q3, 0
+                <span className="text-muted-foreground">) = </span>
+                q1
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Interactive demo */}
