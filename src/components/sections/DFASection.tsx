@@ -33,10 +33,10 @@ export function DFASection() {
   return (
     <Section id="dfa">
       <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('title')}</h2>
-      <p className="text-muted-foreground mb-6 max-w-3xl">{t('description')}</p>
+      <p className="text-muted-foreground mb-6">{t('description')}</p>
 
       {/* Theory */}
-      <div className="mb-8 p-4 rounded-lg bg-muted/30 border border-border/50 max-w-xl">
+      <div className="mb-8 p-4 rounded-lg bg-muted/30 border border-border/50">
         <p className="text-sm font-medium mb-2">{t('theory')}</p>
         <ul className="text-sm text-muted-foreground space-y-1 font-mono">
           <li>{t('theoryQ')}</li>

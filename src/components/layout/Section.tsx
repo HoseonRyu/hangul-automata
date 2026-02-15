@@ -8,11 +8,16 @@ export function Section({ id, children, className = '' }: SectionProps) {
   return (
     <section
       id={id}
-      className={`py-16 md:py-24 scroll-mt-16 ${className}`}
+      className={`
+        min-h-[calc(100dvh-3.5rem)] w-full
+        snap-start snap-always
+        flex flex-col justify-center
+        px-6 md:px-12 lg:px-16 xl:px-24
+        py-8
+        ${className}
+      `}
     >
-      <div className="max-w-6xl mx-auto px-4">
-        {children}
-      </div>
+      {children}
     </section>
   )
 }

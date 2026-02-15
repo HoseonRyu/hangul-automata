@@ -30,12 +30,15 @@ export function Navigation() {
   }
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    const el = document.getElementById(id)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
   }
 
   return (
     <nav className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md">
-      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+      <div className="w-full px-6 md:px-12 lg:px-16 xl:px-24 h-14 flex items-center justify-between">
         <button
           onClick={() => scrollTo('hero')}
           className="font-bold text-lg tracking-tight"

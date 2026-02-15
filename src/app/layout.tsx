@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { Navigation } from "@/components/layout/Navigation";
-import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,14 +30,15 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className="dark scroll-smooth">
+    <html lang={locale} className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         <NextIntlClientProvider messages={messages}>
           <Navigation />
-          <main>{children}</main>
-          <Footer />
+          <main className="snap-y snap-mandatory overflow-y-auto h-[calc(100dvh-3.5rem)] scroll-smooth overscroll-none">
+            {children}
+          </main>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -22,13 +22,13 @@ export function DokkaebiSection() {
   const t = useTranslations('dokkaebi')
 
   return (
-    <Section id="dokkaebi">
+    <Section id="dokkaebi" className="!justify-start !pt-12">
       <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('title')}</h2>
-      <p className="text-muted-foreground mb-6 max-w-3xl">{t('description')}</p>
-      <p className="text-sm text-muted-foreground mb-8 max-w-3xl">{t('explanation')}</p>
+      <p className="text-muted-foreground mb-6">{t('description')}</p>
+      <p className="text-sm text-muted-foreground mb-6">{t('explanation')}</p>
 
       {/* Unicode formula */}
-      <div className="mb-10 p-5 rounded-lg bg-muted/30 border border-border/50 max-w-xl">
+      <div className="mb-8 p-5 rounded-lg bg-muted/30 border border-border/50">
         <h3 className="font-semibold text-sm mb-2">{t('formula')}</h3>
         <code className="text-blue-400 text-lg font-mono">
           chr(f × 588 + m × 28 + l + 44032)
@@ -92,7 +92,7 @@ export function DokkaebiSection() {
       </div>
 
       {/* Dokkaebi demonstration */}
-      <div className="p-6 rounded-lg bg-amber-500/5 border border-amber-500/20 max-w-xl">
+      <div className="p-6 rounded-lg bg-amber-500/5 border border-amber-500/20">
         <h4 className="font-semibold text-amber-400 text-sm mb-3">
           도깨비불 예시: &quot;rkfk&quot; → &quot;가라&quot;
         </h4>

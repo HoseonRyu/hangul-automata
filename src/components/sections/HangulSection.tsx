@@ -42,7 +42,7 @@ export function HangulSection() {
   return (
     <Section id="hangul">
       <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('title')}</h2>
-      <p className="text-muted-foreground mb-8 max-w-3xl">{t('description')}</p>
+      <p className="text-muted-foreground mb-6">{t('description')}</p>
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <div className="lg:col-span-3">

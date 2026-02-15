@@ -10,13 +10,9 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <div className="border-t border-border/30" />
       <DFASection />
-      <div className="border-t border-border/30" />
       <MealySection />
-      <div className="border-t border-border/30" />
       <HangulSection />
-      <div className="border-t border-border/30" />
       <DokkaebiSection />
     </>
   )

@@ -44,7 +44,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <Section id="hero" className="min-h-[70vh] flex items-center">
+    <Section id="hero">
       <div className="text-center w-full">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
