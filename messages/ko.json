@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "title": "Hangul Automata",
+    "dfa": "DFA",
+    "mealy": "Mealy Machine",
+    "hangul": "영한 변환기",
+    "dokkaebi": "도깨비불"
+  },
+  "hero": {
+    "title": "Hangul Automata",
+    "subtitle": "유한 오토마타로 이해하는 한글 입력 원리",
+    "description": "DFA에서 Mealy Machine, 그리고 영한 변환기까지 — 오토마타 이론이 한글 입력기에 어떻게 적용되는지 시각적으로 탐구합니다."
+  },
+  "dfa": {
+    "title": "DFA — 결정적 유한 오토마타",
+    "description": "DFA(Deterministic Finite Automaton)는 입력 문자열이 특정 패턴에 속하는지 판별하는 가장 기본적인 오토마타입니다.",
+    "theory": "DFA는 5-tuple (Q, Σ, δ, q₀, F)로 정의됩니다:",
+    "theoryQ": "Q: 상태의 유한 집합",
+    "theorySigma": "Σ: 입력 심볼의 유한 집합",
+    "theoryDelta": "δ: Q × Σ → Q 전이 함수",
+    "theoryQ0": "q₀: 시작 상태",
+    "theoryF": "F ⊆ Q: 최종(수락) 상태의 집합",
+    "inputPlaceholder": "0과 1로 이루어진 문자열 입력",
+    "accepted": "수락 (Accept)",
+    "rejected": "거부 (Reject)",
+    "example": "예제"
+  },
+  "mealy": {
+    "title": "Mealy Machine — 출력이 있는 오토마타",
+    "description": "Mealy Machine은 DFA와 달리 상태 전이 시 출력을 생성합니다. 최종 상태 대신 입력에 대한 출력 변환이 핵심입니다.",
+    "diff": "DFA와의 차이: 전이 시 출력이 발생하며, 수락/거부 대신 변환된 출력 문자열을 생성합니다.",
+    "inputPlaceholder": "0과 1로 이루어진 문자열 입력",
+    "outputTitle": "출력",
+    "example": "예제"
+  },
+  "hangul": {
+    "title": "영한 변환기 — Mealy Machine의 실전 적용",
+    "description": "10개의 상태를 가진 Mealy Machine으로 영문 키 입력을 한글로 변환합니다. 초성·중성·종성의 조합 규칙을 오토마타의 상태 전이로 모델링합니다.",
+    "inputPlaceholder": "영문 키 입력 (예: dkssud)",
+    "codeTitle": "음절 코드",
+    "hangulTitle": "한글 출력",
+    "stateTitle": "상태 다이어그램",
+    "examples": "예제"
+  },
+  "dokkaebi": {
+    "title": "도깨비불 현상",
+    "description": "종성(받침)이 입력된 후 모음이 이어지면, 종성이 다음 음절의 초성으로 넘어가는 현상입니다. 한글 입력기의 가장 흥미로운 동작입니다.",
+    "explanation": "이 현상은 Mealy Machine에서 종성 상태(K, N, R, L)에서 모음 입력이 들어올 때 발생합니다. 출력 코드 'd'가 이전 종성을 삭제하고, 새 음절의 초성으로 재배치합니다.",
+    "formula": "유니코드 조합 공식",
+    "formulaDesc": "한글 음절 = (초성 × 588) + (중성 × 28) + 종성 + 44032",
+    "walkthrough": "\"dkssud\" → \"안녕\" 워크스루",
+    "step": "단계"
+  },
+  "common": {
+    "speed": "속도",
+    "step": "스텝",
+    "from": "From",
+    "input": "입력",
+    "to": "To",
+    "output": "출력",
+    "result": "결과",
+    "hangul": "한글"
+  },
+  "footer": {
+    "description": "오토마타 이론을 활용한 한글 입력 원리 시각화",
+    "source": "원본 코드",
+    "builtWith": "Built with Next.js, React Flow, Motion"
+  }
+}

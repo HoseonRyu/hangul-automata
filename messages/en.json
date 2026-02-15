@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "title": "Hangul Automata",
+    "dfa": "DFA",
+    "mealy": "Mealy Machine",
+    "hangul": "Converter",
+    "dokkaebi": "Dokkaebi"
+  },
+  "hero": {
+    "title": "Hangul Automata",
+    "subtitle": "Understanding Hangul Input Through Finite Automata",
+    "description": "From DFA to Mealy Machine to Korean input — explore how automata theory powers Hangul character composition, visualized step by step."
+  },
+  "dfa": {
+    "title": "DFA — Deterministic Finite Automaton",
+    "description": "A DFA is the most fundamental automaton that determines whether an input string belongs to a specific pattern.",
+    "theory": "A DFA is defined as a 5-tuple (Q, Σ, δ, q₀, F):",
+    "theoryQ": "Q: Finite set of states",
+    "theorySigma": "Σ: Finite set of input symbols",
+    "theoryDelta": "δ: Q × Σ → Q transition function",
+    "theoryQ0": "q₀: Start state",
+    "theoryF": "F ⊆ Q: Set of accept states",
+    "inputPlaceholder": "Enter a string of 0s and 1s",
+    "accepted": "Accepted",
+    "rejected": "Rejected",
+    "example": "Example"
+  },
+  "mealy": {
+    "title": "Mealy Machine — Automaton with Output",
+    "description": "Unlike a DFA, a Mealy Machine produces output during state transitions. Instead of accept/reject, it generates a transformed output string.",
+    "diff": "Key difference from DFA: transitions produce output, generating a transformed string instead of accept/reject decisions.",
+    "inputPlaceholder": "Enter a string of 0s and 1s",
+    "outputTitle": "Output",
+    "example": "Example"
+  },
+  "hangul": {
+    "title": "Korean Converter — Mealy Machine in Practice",
+    "description": "A 10-state Mealy Machine converts English key inputs to Korean characters. The composition rules of initial, medial, and final consonants are modeled as state transitions.",
+    "inputPlaceholder": "Type English keys (e.g., dkssud)",
+    "codeTitle": "Syllable Code",
+    "hangulTitle": "Hangul Output",
+    "stateTitle": "State Diagram",
+    "examples": "Examples"
+  },
+  "dokkaebi": {
+    "title": "Dokkaebi Phenomenon",
+    "description": "When a vowel follows a final consonant (batchim), the consonant moves to become the initial consonant of the next syllable. This is the most fascinating behavior of Korean input.",
+    "explanation": "This occurs in the Mealy Machine when a vowel input arrives at a final consonant state (K, N, R, L). The output code 'd' deletes the previous final consonant and repositions it as the initial consonant of the new syllable.",
+    "formula": "Unicode Composition Formula",
+    "formulaDesc": "Hangul syllable = (initial × 588) + (medial × 28) + final + 44032",
+    "walkthrough": "\"dkssud\" → \"안녕\" Walkthrough",
+    "step": "Step"
+  },
+  "common": {
+    "speed": "Speed",
+    "step": "Step",
+    "from": "From",
+    "input": "Input",
+    "to": "To",
+    "output": "Output",
+    "result": "Result",
+    "hangul": "Hangul"
+  },
+  "footer": {
+    "description": "Visualizing Hangul input principles through automata theory",
+    "source": "Source Code",
+    "builtWith": "Built with Next.js, React Flow, Motion"
+  }
+}

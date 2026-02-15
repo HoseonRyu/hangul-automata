@@ -1,13 +1,11 @@
 'use client'
 
-import { useCallback, useMemo } from 'react'
+import { useMemo } from 'react'
 import {
   ReactFlow,
   Background,
   type Node,
   type Edge,
-  useNodesState,
-  useEdgesState,
   type NodeTypes,
   type EdgeTypes,
 } from '@xyflow/react'
@@ -35,7 +33,7 @@ export function AutomataGraph({
   const nodeTypes: NodeTypes = useMemo(() => ({ stateNode: StateNode }), [])
   const edgeTypes: EdgeTypes = useMemo(() => ({ transitionEdge: TransitionEdge }), [])
 
-  const processedNodes = useMemo(
+  const nodes = useMemo(
     () =>
       initialNodes.map((node) => ({
         ...node,
@@ -47,7 +45,7 @@ export function AutomataGraph({
     [initialNodes, activeState]
   )
 
-  const processedEdges = useMemo(
+  const edges = useMemo(
     () =>
       initialEdges.map((edge) => ({
         ...edge,
@@ -60,35 +58,11 @@ export function AutomataGraph({
     [initialEdges, activeEdgeId, isDokkaebi]
   )
 
-  const [nodes, , onNodesChange] = useNodesState(processedNodes)
-  const [edges, , onEdgesChange] = useEdgesState(processedEdges)
-
-  // Update nodes/edges when processed versions change
-  useMemo(() => {
-    onNodesChange(
-      processedNodes.map((node) => ({
-        type: 'reset' as const,
-        item: node,
-      }))
-    )
-  }, [processedNodes, onNodesChange])
-
-  useMemo(() => {
-    onEdgesChange(
-      processedEdges.map((edge) => ({
-        type: 'reset' as const,
-        item: edge,
-      }))
-    )
-  }, [processedEdges, onEdgesChange])
-
   return (
     <div className={`w-full h-[400px] rounded-lg border border-border bg-background/50 ${className}`}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         fitView
