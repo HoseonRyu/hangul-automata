@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hangul Automata
+
+유한 오토마타(Finite Automata)로 이해하는 한글 입력 원리를 시각적으로 탐구하는 인터랙티브 웹 프로젝트.
+
+DFA에서 Mealy Machine, 그리고 영한 변환기까지 — 오토마타 이론이 한글 입력기에 어떻게 적용되는지 스텝별 애니메이션으로 보여줍니다.
+
+## Features
+
+- **DFA 시각화**: 3-state DFA의 상태 전이를 인터랙티브하게 탐색
+- **Mealy Machine 시각화**: 전이 시 출력을 생성하는 Mealy Machine 데모
+- **영한 변환기**: 10-state Mealy Machine 기반 영문→한글 변환 (도깨비불 현상 포함)
+- **도깨비불 현상 설명**: 종성이 다음 음절 초성으로 이동하는 과정을 스텝별로 시각화
+- **한/영 언어 전환**: 모든 UI 텍스트를 한국어/영어로 전환 가능
+- **다크모드**: 기본 다크 테마
+
+## Tech Stack
+
+| Layer | Choice |
+|-------|--------|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript |
+| Graph | React Flow (@xyflow/react) |
+| Animation | Motion (Framer Motion) |
+| Styling | Tailwind CSS 4 |
+| UI | shadcn/ui |
+| i18n | next-intl |
+| Test | Vitest |
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Testing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm test
+```
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
+Vercel에 배포:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npx vercel
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Original
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Python 구현: [En-Kor_Converter](../En-Kor_Converter)
