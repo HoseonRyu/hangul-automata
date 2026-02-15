@@ -60,7 +60,7 @@
     "explanation": "이 현상은 Mealy Machine에서 종성 상태(K, N, R, L)에서 모음 입력이 들어올 때 발생합니다. 출력 코드 'd'가 이전 종성을 삭제하고, 새 음절의 초성으로 재배치합니다.",
     "formula": "유니코드 조합 공식",
     "formulaDesc": "한글 음절 = (초성 × 588) + (중성 × 28) + 종성 + 44032",
-    "walkthrough": "\"dkssud\" → \"안녕\" 워크스루",
+    "walkthrough": "\"rkfk\" → \"가라\" 워크스루",
     "step": "단계"
   },
   "common": {

@@ -5,17 +5,15 @@ import { motion } from 'motion/react'
 import { Section } from '@/components/layout/Section'
 import { HangulConverter } from '@/lib/hangul/converter'
 
-// Pre-compute the trace for "dkssud"
+// Pre-compute the trace for "rkfk" (도깨비불 발생 예시)
 const converter = new HangulConverter()
-const demoTrace = converter.traceConvert('dkssud')
+const demoTrace = converter.traceConvert('rkfk')
 
 const WALKTHROUGH_DATA = [
-  { key: 'd', desc_ko: 'ㅇ (초성)', desc_en: 'ㅇ (initial)', code: '0', state: 'S → V' },
-  { key: 'k', desc_ko: 'ㅏ (중성)', desc_en: 'ㅏ (medial)', code: '01', state: 'V → A' },
-  { key: 's', desc_ko: 'ㄴ (종성)', desc_en: 'ㄴ (final)', code: '012', state: 'A → N' },
-  { key: 's', desc_ko: 'ㄴ (새 음절 초성)', desc_en: 'ㄴ (new initial)', code: '012.0', state: 'N → V' },
-  { key: 'u', desc_ko: 'ㅕ (중성)', desc_en: 'ㅕ (medial)', code: '012.01', state: 'V → A' },
-  { key: 'd', desc_ko: 'ㅇ (종성)', desc_en: 'ㅇ (final)', code: '012.012', state: 'A → L' },
+  { key: 'r', desc_ko: 'ㄱ (초성)', desc_en: 'ㄱ (initial)', code: '0', state: 'S → V', dokkaebi: false },
+  { key: 'k', desc_ko: 'ㅏ (중성)', desc_en: 'ㅏ (medial)', code: '01', state: 'V → A', dokkaebi: false },
+  { key: 'f', desc_ko: 'ㄹ (종성)', desc_en: 'ㄹ (final)', code: '012', state: 'A → R', dokkaebi: false },
+  { key: 'k', desc_ko: 'ㅏ → 도깨비불! 종성 ㄹ이 초성으로 이동', desc_en: 'ㅏ → Dokkaebi! ㄹ moves to initial', code: '012d.01', state: 'R → A', dokkaebi: true },
 ]
 
 export function DokkaebiSection() {
@@ -46,7 +44,7 @@ export function DokkaebiSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
             viewport={{ once: true }}
-            className="p-5 rounded-lg border border-border/50 bg-muted/20"
+            className={`p-5 rounded-lg border ${step.dokkaebi ? 'border-amber-500/40 bg-amber-500/5' : 'border-border/50 bg-muted/20'}`}
           >
             <div className="flex items-center gap-3 mb-2">
               <span className="text-sm text-muted-foreground">

@@ -60,7 +60,7 @@
     "explanation": "This occurs in the Mealy Machine when a vowel input arrives at a final consonant state (K, N, R, L). The output code 'd' deletes the previous final consonant and repositions it as the initial consonant of the new syllable.",
     "formula": "Unicode Composition Formula",
     "formulaDesc": "Hangul syllable = (initial × 588) + (medial × 28) + final + 44032",
-    "walkthrough": "\"dkssud\" → \"안녕\" Walkthrough",
+    "walkthrough": "\"rkfk\" → \"가라\" Walkthrough",
     "step": "Step"
   },
   "common": {
