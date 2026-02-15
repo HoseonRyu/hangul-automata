@@ -98,15 +98,15 @@ function TransitionEdgeComponent({
       />
       {label && (
         <foreignObject
-          x={labelX - 40}
-          y={labelY - 12}
-          width={80}
-          height={24}
+          x={labelX - 50}
+          y={labelY - 14}
+          width={100}
+          height={28}
           className="pointer-events-none"
         >
           <div
             className={`
-              text-center text-xs font-mono px-1 py-0.5 rounded
+              text-center text-sm font-mono px-1.5 py-0.5 rounded
               ${isActive
                 ? isDokkaebi
                   ? 'text-amber-400 bg-amber-500/20 font-bold'

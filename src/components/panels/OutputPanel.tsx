@@ -15,9 +15,9 @@ export function OutputPanel({ output, currentStep, title, className = '' }: Outp
   return (
     <div className={`rounded-lg border border-border p-4 ${className}`}>
       {title && (
-        <div className="text-xs text-muted-foreground mb-2 font-medium">{title}</div>
+        <div className="text-sm text-muted-foreground mb-2 font-medium">{title}</div>
       )}
-      <div className="font-mono text-xl min-h-[2rem] flex items-center">
+      <div className="font-mono text-2xl min-h-[2.5rem] flex items-center">
         <AnimatePresence mode="popLayout">
           {Array.from(visibleOutput).map((char, i) => (
             <motion.span

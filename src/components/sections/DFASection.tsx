@@ -32,14 +32,14 @@ export function DFASection() {
 
   return (
     <Section id="dfa">
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('title')}</h2>
-      <p className="text-muted-foreground mb-6">{t('description')}</p>
+      <h2 className="text-4xl md:text-5xl font-bold mb-5">{t('title')}</h2>
+      <p className="text-lg md:text-xl text-muted-foreground mb-8">{t('description')}</p>
 
       {/* Theory + Example 5-tuple side by side */}
       <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="p-4 rounded-lg bg-muted/30 border border-border/50">
-          <p className="text-sm font-medium mb-2">{t('theory')}</p>
-          <ul className="text-sm text-muted-foreground space-y-1 font-mono">
+        <div className="p-5 rounded-lg bg-muted/30 border border-border/50">
+          <p className="text-base md:text-lg font-medium mb-3">{t('theory')}</p>
+          <ul className="text-base text-muted-foreground space-y-1.5 font-mono">
             <li>{t('theoryQ')}</li>
             <li>{t('theorySigma')}</li>
             <li>{t('theoryDelta')}</li>
@@ -48,9 +48,9 @@ export function DFASection() {
           </ul>
         </div>
 
-        <div className="p-4 rounded-lg bg-blue-500/5 border border-blue-500/20">
-          <p className="text-sm font-medium mb-2 text-blue-400">{t('exampleConfig')}</p>
-          <ul className="text-sm space-y-1 font-mono">
+        <div className="p-5 rounded-lg bg-blue-500/5 border border-blue-500/20">
+          <p className="text-base md:text-lg font-medium mb-3 text-blue-400">{t('exampleConfig')}</p>
+          <ul className="text-base space-y-1.5 font-mono">
             <li>
               <span className="text-muted-foreground">Q = </span>
               {'{ '}
@@ -83,8 +83,8 @@ export function DFASection() {
             </li>
           </ul>
           <div className="mt-3 pt-3 border-t border-blue-500/10">
-            <p className="text-xs text-muted-foreground mb-1.5">{t('exampleDelta')}</p>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-sm font-mono">
+            <p className="text-sm text-muted-foreground mb-2">{t('exampleDelta')}</p>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-base font-mono">
               <span>
                 <span className="text-muted-foreground">δ(</span>
                 q0, 0
@@ -160,7 +160,7 @@ export function DFASection() {
               {playback.isFinished && result !== null && (
                 <Badge
                   variant={result ? 'default' : 'destructive'}
-                  className="self-center text-base px-4 py-1"
+                  className="self-center text-lg px-5 py-1.5"
                 >
                   {result ? t('accepted') : t('rejected')}
                 </Badge>
@@ -180,7 +180,7 @@ export function DFASection() {
           )}
 
           {error && (
-            <div className="text-red-400 text-sm p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+            <div className="text-red-400 text-base p-4 rounded-lg bg-red-500/10 border border-red-500/20">
               {error}
             </div>
           )}

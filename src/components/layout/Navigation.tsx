@@ -41,7 +41,7 @@ export function Navigation() {
       <div className="w-full px-6 md:px-12 lg:px-16 xl:px-24 h-14 flex items-center justify-between">
         <button
           onClick={() => scrollTo('hero')}
-          className="font-bold text-lg tracking-tight"
+          className="font-bold text-xl tracking-tight"
         >
           {t('title')}
         </button>
@@ -53,7 +53,7 @@ export function Navigation() {
               variant="ghost"
               size="sm"
               onClick={() => scrollTo(section)}
-              className="text-sm"
+              className="text-base"
             >
               {t(section)}
             </Button>
@@ -61,8 +61,8 @@ export function Navigation() {
         </div>
 
         <Button variant="ghost" size="sm" onClick={toggleLocale} className="gap-1.5">
-          <Languages className="h-4 w-4" />
-          <span className="text-xs font-mono">{locale === 'ko' ? 'EN' : '한'}</span>
+          <Languages className="h-5 w-5" />
+          <span className="text-sm font-mono">{locale === 'ko' ? 'EN' : '한'}</span>
         </Button>
       </div>
     </nav>

@@ -36,21 +36,21 @@ function StateNodeComponent({ data }: NodeProps) {
       <div
         className={`
           relative flex items-center justify-center rounded-full
-          w-16 h-16 border-2 transition-colors duration-300
+          w-20 h-20 border-2 transition-colors duration-300
           ${isActive
-            ? 'border-blue-500 bg-blue-500/20 shadow-[0_0_20px_rgba(59,130,246,0.5)]'
+            ? 'border-blue-500 bg-blue-500/20 shadow-[0_0_24px_rgba(59,130,246,0.5)]'
             : 'border-foreground/40 bg-background'
           }
           ${isFinal ? 'ring-2 ring-offset-2 ring-foreground/40 ring-offset-background' : ''}
         `}
       >
-        <span className={`text-sm font-mono font-bold ${isActive ? 'text-blue-400' : 'text-foreground'}`}>
+        <span className={`text-base font-mono font-bold ${isActive ? 'text-blue-400' : 'text-foreground'}`}>
           {label}
         </span>
       </div>
 
       {description && (
-        <div className="absolute -bottom-5 text-xs text-muted-foreground whitespace-nowrap">
+        <div className="absolute -bottom-6 text-sm text-muted-foreground whitespace-nowrap">
           {description}
         </div>
       )}

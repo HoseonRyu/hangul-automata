@@ -24,9 +24,9 @@ export function CodePanel({ code, currentStep, title, className = '' }: CodePane
   return (
     <div className={`rounded-lg border border-border p-4 ${className}`}>
       {title && (
-        <div className="text-xs text-muted-foreground mb-2 font-medium">{title}</div>
+        <div className="text-sm text-muted-foreground mb-2 font-medium">{title}</div>
       )}
-      <div className="font-mono text-lg min-h-[2rem] flex items-center flex-wrap gap-0.5">
+      <div className="font-mono text-xl min-h-[2.5rem] flex items-center flex-wrap gap-1">
         <AnimatePresence mode="popLayout">
           {Array.from(code).map((char, i) => (
             <motion.span
@@ -34,7 +34,7 @@ export function CodePanel({ code, currentStep, title, className = '' }: CodePane
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               className={`
-                inline-block px-1 py-0.5 rounded text-sm
+                inline-block px-1.5 py-0.5 rounded text-base
                 ${codeColors[char] || 'text-foreground'}
               `}
             >
@@ -46,7 +46,7 @@ export function CodePanel({ code, currentStep, title, className = '' }: CodePane
           <span className="text-muted-foreground/40">...</span>
         )}
       </div>
-      <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
+      <div className="flex gap-4 mt-3 text-sm text-muted-foreground">
         <span className="flex items-center gap-1">
           <span className="w-2 h-2 rounded-full bg-green-400" /> 0: 초성
         </span>

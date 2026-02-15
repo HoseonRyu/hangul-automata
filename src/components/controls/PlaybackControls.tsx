@@ -46,36 +46,36 @@ export function PlaybackControls({
 }: PlaybackControlsProps) {
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-center justify-center gap-1">
+      <div className="flex items-center justify-center gap-1.5">
         <Button
           variant="ghost"
           size="icon"
           onClick={onReset}
           disabled={isAtStart}
-          className="h-8 w-8"
+          className="h-10 w-10"
         >
-          <SkipBack className="h-4 w-4" />
+          <SkipBack className="h-5 w-5" />
         </Button>
         <Button
           variant="ghost"
           size="icon"
           onClick={onStepBackward}
           disabled={isAtStart}
-          className="h-8 w-8"
+          className="h-10 w-10"
         >
-          <StepBack className="h-4 w-4" />
+          <StepBack className="h-5 w-5" />
         </Button>
         <Button
           variant="ghost"
           size="icon"
           onClick={isPlaying ? onPause : onPlay}
           disabled={isAtEnd && !isPlaying}
-          className="h-10 w-10"
+          className="h-12 w-12"
         >
           {isPlaying ? (
-            <Pause className="h-5 w-5" />
+            <Pause className="h-6 w-6" />
           ) : (
-            <Play className="h-5 w-5" />
+            <Play className="h-6 w-6" />
           )}
         </Button>
         <Button
@@ -83,23 +83,23 @@ export function PlaybackControls({
           size="icon"
           onClick={onStepForward}
           disabled={isAtEnd}
-          className="h-8 w-8"
+          className="h-10 w-10"
         >
-          <StepForward className="h-4 w-4" />
+          <StepForward className="h-5 w-5" />
         </Button>
         <Button
           variant="ghost"
           size="icon"
           onClick={onGoToEnd}
           disabled={isAtEnd}
-          className="h-8 w-8"
+          className="h-10 w-10"
         >
-          <SkipForward className="h-4 w-4" />
+          <SkipForward className="h-5 w-5" />
         </Button>
       </div>
 
       <div className="flex items-center gap-3 px-2">
-        <span className="text-xs text-muted-foreground whitespace-nowrap">
+        <span className="text-sm text-muted-foreground whitespace-nowrap">
           {speedLabel}
         </span>
         <Slider
@@ -110,7 +110,7 @@ export function PlaybackControls({
           onValueChange={([v]) => onSpeedChange(1200 - v)}
           className="flex-1"
         />
-        <span className="text-xs text-muted-foreground font-mono w-16 text-right">
+        <span className="text-sm text-muted-foreground font-mono w-20 text-right">
           {currentStep + 1}/{totalSteps}
         </span>
       </div>

@@ -31,9 +31,9 @@ export function HangulDisplay({
   return (
     <div className={`rounded-lg border border-border p-4 ${className}`}>
       {title && (
-        <div className="text-xs text-muted-foreground mb-2 font-medium">{title}</div>
+        <div className="text-sm text-muted-foreground mb-2 font-medium">{title}</div>
       )}
-      <div className="min-h-[3rem] flex items-center justify-center">
+      <div className="min-h-[4rem] flex items-center justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentHangul}
@@ -43,10 +43,10 @@ export function HangulDisplay({
               scale: 1,
               color: isDokkaebi ? '#f59e0b' : isFinished ? '#22c55e' : '#e2e8f0',
             }}
-            className="text-4xl font-bold tracking-wider"
+            className="text-5xl font-bold tracking-wider"
           >
             {currentHangul || (
-              <span className="text-muted-foreground/30 text-2xl">한글</span>
+              <span className="text-muted-foreground/30 text-3xl">한글</span>
             )}
           </motion.div>
         </AnimatePresence>
@@ -55,7 +55,7 @@ export function HangulDisplay({
         <motion.div
           initial={{ opacity: 0, y: 5 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center text-xs text-amber-400 mt-1"
+          className="text-center text-sm text-amber-400 mt-1"
         >
           도깨비불 발생!
         </motion.div>
@@ -64,7 +64,7 @@ export function HangulDisplay({
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-center text-sm text-green-400 mt-2"
+          className="text-center text-base text-green-400 mt-2"
         >
           결과: {finalResult}
         </motion.div>

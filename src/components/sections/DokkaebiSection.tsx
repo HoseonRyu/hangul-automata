@@ -23,21 +23,21 @@ export function DokkaebiSection() {
 
   return (
     <Section id="dokkaebi" className="!justify-start !pt-12">
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('title')}</h2>
-      <p className="text-muted-foreground mb-6">{t('description')}</p>
-      <p className="text-sm text-muted-foreground mb-6">{t('explanation')}</p>
+      <h2 className="text-4xl md:text-5xl font-bold mb-5">{t('title')}</h2>
+      <p className="text-lg md:text-xl text-muted-foreground mb-5">{t('description')}</p>
+      <p className="text-base text-muted-foreground mb-6">{t('explanation')}</p>
 
       {/* Unicode formula */}
-      <div className="mb-8 p-5 rounded-lg bg-muted/30 border border-border/50">
-        <h3 className="font-semibold text-sm mb-2">{t('formula')}</h3>
-        <code className="text-blue-400 text-lg font-mono">
+      <div className="mb-8 p-6 rounded-lg bg-muted/30 border border-border/50">
+        <h3 className="font-semibold text-base md:text-lg mb-3">{t('formula')}</h3>
+        <code className="text-blue-400 text-xl md:text-2xl font-mono">
           chr(f × 588 + m × 28 + l + 44032)
         </code>
-        <p className="text-xs text-muted-foreground mt-2">{t('formulaDesc')}</p>
+        <p className="text-sm text-muted-foreground mt-3">{t('formulaDesc')}</p>
       </div>
 
       {/* Walkthrough */}
-      <h3 className="text-xl font-bold mb-6">{t('walkthrough')}</h3>
+      <h3 className="text-2xl font-bold mb-6">{t('walkthrough')}</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         {WALKTHROUGH_DATA.map((step, i) => (
           <motion.div
@@ -46,20 +46,20 @@ export function DokkaebiSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
             viewport={{ once: true }}
-            className="p-4 rounded-lg border border-border/50 bg-muted/20"
+            className="p-5 rounded-lg border border-border/50 bg-muted/20"
           >
             <div className="flex items-center gap-3 mb-2">
-              <span className="text-xs text-muted-foreground">
+              <span className="text-sm text-muted-foreground">
                 {t('step')} {i + 1}
               </span>
-              <span className="font-mono text-lg font-bold text-blue-400">
+              <span className="font-mono text-xl font-bold text-blue-400">
                 {step.key}
               </span>
             </div>
-            <div className="text-sm text-muted-foreground mb-1">
+            <div className="text-base text-muted-foreground mb-1">
               {step.desc_ko}
             </div>
-            <div className="flex items-center gap-2 text-xs font-mono">
+            <div className="flex items-center gap-2 text-sm font-mono">
               <span className="text-muted-foreground">{step.state}</span>
               <span className="text-foreground/60">→</span>
               <span className="flex gap-0.5">
@@ -83,7 +83,7 @@ export function DokkaebiSection() {
             </div>
             {/* Show intermediate hangul */}
             {i < demoTrace.length && (
-              <div className="mt-2 text-lg font-bold">
+              <div className="mt-2 text-xl font-bold">
                 {demoTrace[i].currentHangul}
               </div>
             )}
@@ -93,10 +93,10 @@ export function DokkaebiSection() {
 
       {/* Dokkaebi demonstration */}
       <div className="p-6 rounded-lg bg-amber-500/5 border border-amber-500/20">
-        <h4 className="font-semibold text-amber-400 text-sm mb-3">
+        <h4 className="font-semibold text-amber-400 text-base mb-3">
           도깨비불 예시: &quot;rkfk&quot; → &quot;가라&quot;
         </h4>
-        <div className="space-y-2 text-sm font-mono">
+        <div className="space-y-2.5 text-base font-mono">
           <div className="flex items-center gap-2">
             <span className="text-muted-foreground w-6">1.</span>
             <span>r(ㄱ) → <span className="text-green-400">초성</span></span>

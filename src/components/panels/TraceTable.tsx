@@ -36,16 +36,16 @@ export function TraceTable({
   return (
     <div className={`rounded-lg border border-border overflow-hidden ${className}`}>
       <div className="overflow-x-auto max-h-[240px] overflow-y-auto">
-        <table className="w-full text-sm">
+        <table className="w-full text-base">
           <thead className="sticky top-0">
-            <tr className="bg-muted/50 text-muted-foreground text-xs">
-              <th className="px-2 py-1.5 text-center">{stepLabel}</th>
-              <th className="px-2 py-1.5 text-center">{fromLabel}</th>
-              <th className="px-2 py-1.5 text-center">{inputLabel}</th>
-              <th className="px-2 py-1.5 text-center">{toLabel}</th>
-              {type !== 'dfa' && <th className="px-2 py-1.5 text-center">{outputLabel}</th>}
-              {type === 'dfa' && <th className="px-2 py-1.5 text-center">{resultLabel}</th>}
-              {type === 'hangul' && <th className="px-2 py-1.5 text-center">{hangulLabel}</th>}
+            <tr className="bg-muted/50 text-muted-foreground text-sm">
+              <th className="px-3 py-2 text-center">{stepLabel}</th>
+              <th className="px-3 py-2 text-center">{fromLabel}</th>
+              <th className="px-3 py-2 text-center">{inputLabel}</th>
+              <th className="px-3 py-2 text-center">{toLabel}</th>
+              {type !== 'dfa' && <th className="px-3 py-2 text-center">{outputLabel}</th>}
+              {type === 'dfa' && <th className="px-3 py-2 text-center">{resultLabel}</th>}
+              {type === 'hangul' && <th className="px-3 py-2 text-center">{hangulLabel}</th>}
             </tr>
           </thead>
           <tbody className="font-mono">
@@ -64,12 +64,12 @@ export function TraceTable({
                     ${isFuture ? 'text-muted-foreground/30' : ''}
                   `}
                 >
-                  <td className="px-2 py-1 text-center text-xs">{i + 1}</td>
-                  <td className="px-2 py-1 text-center">{step.fromState}</td>
-                  <td className="px-2 py-1 text-center font-bold">{step.symbol}</td>
-                  <td className="px-2 py-1 text-center">{step.toState}</td>
+                  <td className="px-3 py-1.5 text-center text-sm">{i + 1}</td>
+                  <td className="px-3 py-1.5 text-center">{step.fromState}</td>
+                  <td className="px-3 py-1.5 text-center font-bold">{step.symbol}</td>
+                  <td className="px-3 py-1.5 text-center">{step.toState}</td>
                   {type === 'dfa' && (
-                    <td className="px-2 py-1 text-center">
+                    <td className="px-3 py-1.5 text-center">
                       {(step as DFATraceStep).isFinal ? (
                         <span className="text-green-400">Accept</span>
                       ) : (
@@ -78,16 +78,16 @@ export function TraceTable({
                     </td>
                   )}
                   {type === 'mealy' && (
-                    <td className="px-2 py-1 text-center">
+                    <td className="px-3 py-1.5 text-center">
                       {(step as MealyTraceStep).output}
                     </td>
                   )}
                   {type === 'hangul' && (
                     <>
-                      <td className="px-2 py-1 text-center">
+                      <td className="px-3 py-1.5 text-center">
                         {(step as HangulTraceStep).output}
                       </td>
-                      <td className="px-2 py-1 text-center">
+                      <td className="px-3 py-1.5 text-center">
                         {(step as HangulTraceStep).currentHangul}
                       </td>
                     </>

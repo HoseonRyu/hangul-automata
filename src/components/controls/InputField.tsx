@@ -38,19 +38,19 @@ export function InputField({
         value={value}
         onChange={handleChange}
         placeholder={placeholder}
-        className="font-mono text-lg"
+        className="font-mono text-xl h-12"
         spellCheck={false}
         autoComplete="off"
       />
       {examples && examples.length > 0 && (
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-2">
           {examples.map((ex) => (
             <Button
               key={ex.value}
               variant="outline"
               size="sm"
               onClick={() => onChange(ex.value)}
-              className="text-xs font-mono h-7"
+              className="text-sm font-mono h-9"
             >
               {ex.label}
             </Button>

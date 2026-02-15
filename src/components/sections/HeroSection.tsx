@@ -49,7 +49,7 @@ export function HeroSection() {
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-7xl font-bold tracking-tight mb-4"
+          className="text-6xl md:text-8xl font-bold tracking-tight mb-6"
         >
           {t('title')}
         </motion.h1>
@@ -57,7 +57,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-xl md:text-2xl text-muted-foreground mb-8"
+          className="text-2xl md:text-3xl text-muted-foreground mb-10"
         >
           {t('subtitle')}
         </motion.p>
@@ -65,7 +65,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-base text-muted-foreground max-w-2xl mx-auto mb-12"
+          className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-14"
         >
           {t('description')}
         </motion.p>
@@ -75,9 +75,9 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4 }}
-          className="inline-flex items-center gap-4 bg-muted/30 rounded-xl border border-border/50 px-8 py-6"
+          className="inline-flex items-center gap-6 bg-muted/30 rounded-2xl border border-border/50 px-10 py-8"
         >
-          <span className="font-mono text-2xl md:text-3xl text-muted-foreground">
+          <span className="font-mono text-3xl md:text-4xl text-muted-foreground">
             &quot;{typedInput}
             <span className="animate-pulse">|</span>
             &quot;
@@ -86,7 +86,7 @@ export function HeroSection() {
             <motion.span
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-2xl md:text-3xl"
+              className="text-3xl md:text-4xl"
             >
               →
             </motion.span>
@@ -95,7 +95,7 @@ export function HeroSection() {
             <motion.span
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="text-3xl md:text-4xl font-bold text-blue-400"
+              className="text-4xl md:text-5xl font-bold text-blue-400"
             >
               &quot;{DEMO_OUTPUT}&quot;
             </motion.span>
