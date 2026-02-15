@@ -54,11 +54,11 @@ export function DFASection() {
             <li>
               <span className="text-muted-foreground">Q = </span>
               {'{ '}
+              <span className="text-blue-400">q0</span>
+              {', '}
               <span className="text-blue-400">q1</span>
               {', '}
               <span className="text-blue-400">q2</span>
-              {', '}
-              <span className="text-blue-400">q3</span>
               {' }'}
             </li>
             <li>
@@ -71,14 +71,14 @@ export function DFASection() {
             </li>
             <li>
               <span className="text-muted-foreground">q₀ = </span>
-              <span className="text-blue-400">q1</span>
+              <span className="text-blue-400">q0</span>
             </li>
             <li>
               <span className="text-muted-foreground">F = </span>
               {'{ '}
-              <span className="text-green-400">q2</span>
+              <span className="text-green-400">q1</span>
               {', '}
-              <span className="text-green-400">q3</span>
+              <span className="text-green-400">q2</span>
               {' }'}
             </li>
           </ul>
@@ -87,7 +87,19 @@ export function DFASection() {
             <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-sm font-mono">
               <span>
                 <span className="text-muted-foreground">δ(</span>
+                q0, 0
+                <span className="text-muted-foreground">) = </span>
+                q1
+              </span>
+              <span>
+                <span className="text-muted-foreground">δ(</span>
                 q1, 0
+                <span className="text-muted-foreground">) = </span>
+                q1
+              </span>
+              <span>
+                <span className="text-muted-foreground">δ(</span>
+                q1, 1
                 <span className="text-muted-foreground">) = </span>
                 q2
               </span>
@@ -95,19 +107,7 @@ export function DFASection() {
                 <span className="text-muted-foreground">δ(</span>
                 q2, 0
                 <span className="text-muted-foreground">) = </span>
-                q2
-              </span>
-              <span>
-                <span className="text-muted-foreground">δ(</span>
-                q2, 1
-                <span className="text-muted-foreground">) = </span>
-                q3
-              </span>
-              <span>
-                <span className="text-muted-foreground">δ(</span>
-                q3, 0
-                <span className="text-muted-foreground">) = </span>
-                q1
+                q0
               </span>
             </div>
           </div>
