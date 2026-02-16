@@ -8,7 +8,6 @@ import { AutomataGraph } from '@/components/graph/AutomataGraph'
 import { InputField } from '@/components/controls/InputField'
 import { PlaybackControls } from '@/components/controls/PlaybackControls'
 import { TraceTable } from '@/components/panels/TraceTable'
-import { Badge } from '@/components/ui/badge'
 import { dfaNodes, dfaEdges, dfaConfig } from '@/lib/graph/dfa-config'
 import { useDFATrace } from '@/hooks/useAutomataTrace'
 import { usePlayback } from '@/hooks/usePlayback'
@@ -214,19 +213,24 @@ export function DFASection() {
                     speedLabel={tc('speed')}
                   />
 
-                  {playback.isFinished && result !== null && (
-                    <Badge
-                      variant={result ? 'default' : 'destructive'}
-                      className="self-center text-lg px-5 py-1.5"
-                    >
-                      {result ? t('accepted') : t('rejected')}
-                    </Badge>
-                  )}
+                  <div className="flex items-center justify-between rounded-lg border border-border/50 bg-muted/20 px-4 py-2">
+                    <span className="text-sm text-muted-foreground">{tc('result')}</span>
+                    <span className={`text-base font-medium ${
+                      traceIndex === trace.length - 1 && !isTransition && result !== null
+                        ? result ? 'text-green-400' : 'text-red-400'
+                        : 'text-muted-foreground/30'
+                    }`}>
+                      {traceIndex === trace.length - 1 && !isTransition && result !== null
+                        ? result ? t('accepted') : t('rejected')
+                        : '—'}
+                    </span>
+                  </div>
 
                   <div className="grow min-h-0 overflow-y-auto">
                     <TraceTable
                       trace={trace}
                       currentStep={traceIndex}
+                      revealedStep={isTransition ? traceIndex - 1 : traceIndex}
                       type="dfa"
                       stepLabel={tc('step')}
                       fromLabel={tc('from')}

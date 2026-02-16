@@ -7,6 +7,7 @@ type TraceStep = DFATraceStep | MealyTraceStep | HangulTraceStep
 interface TraceTableProps {
   trace: TraceStep[]
   currentStep: number
+  revealedStep?: number
   type: 'dfa' | 'mealy' | 'hangul'
   className?: string
   stepLabel?: string
@@ -21,6 +22,7 @@ interface TraceTableProps {
 export function TraceTable({
   trace,
   currentStep,
+  revealedStep,
   type,
   className = '',
   stepLabel = 'Step',
@@ -70,7 +72,9 @@ export function TraceTable({
                   <td className="px-3 py-1.5 text-center">{step.toState}</td>
                   {type === 'dfa' && (
                     <td className="px-3 py-1.5 text-center">
-                      {(step as DFATraceStep).isFinal ? (
+                      {i > (revealedStep ?? currentStep) ? (
+                        <span className="text-muted-foreground/30">—</span>
+                      ) : (step as DFATraceStep).isFinal ? (
                         <span className="text-green-400">Accept</span>
                       ) : (
                         <span className="text-red-400">Reject</span>
