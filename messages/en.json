@@ -71,7 +71,9 @@
     "to": "To",
     "output": "Output",
     "result": "Result",
-    "hangul": "Hangul"
+    "hangul": "Hangul",
+    "modeExplain": "Explain",
+    "modeInteractive": "Interactive"
   },
   "footer": {
     "description": "Visualizing Hangul input principles through automata theory",

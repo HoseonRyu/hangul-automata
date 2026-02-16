@@ -10,11 +10,12 @@ interface StateNodeData {
   isFinal: boolean
   description?: string
   isActive?: boolean
+  isHighlighted?: boolean
   [key: string]: unknown
 }
 
 function StateNodeComponent({ data }: NodeProps) {
-  const { label, isStart, isFinal, isActive, description } = data as StateNodeData
+  const { label, isStart, isFinal, isActive, isHighlighted, description } = data as StateNodeData
 
   return (
     <motion.div
@@ -39,12 +40,14 @@ function StateNodeComponent({ data }: NodeProps) {
           w-20 h-20 border-2 transition-colors duration-300
           ${isActive
             ? 'border-blue-500 bg-blue-500/20 shadow-[0_0_24px_rgba(59,130,246,0.5)]'
-            : 'border-foreground/40 bg-background'
+            : isHighlighted
+              ? 'border-emerald-500 bg-emerald-500/15 shadow-[0_0_16px_rgba(16,185,129,0.3)]'
+              : 'border-foreground/40 bg-background'
           }
           ${isFinal ? 'ring-2 ring-offset-2 ring-foreground/40 ring-offset-background' : ''}
         `}
       >
-        <span className={`text-base font-mono font-bold ${isActive ? 'text-blue-400' : 'text-foreground'}`}>
+        <span className={`text-base font-mono font-bold ${isActive ? 'text-blue-400' : isHighlighted ? 'text-emerald-400' : 'text-foreground'}`}>
           {label}
         </span>
       </div>

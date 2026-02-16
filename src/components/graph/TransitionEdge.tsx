@@ -13,6 +13,7 @@ interface TransitionEdgeData {
   symbols?: string[]
   isActive?: boolean
   isDokkaebi?: boolean
+  isHighlighted?: boolean
   [key: string]: unknown
 }
 
@@ -28,7 +29,7 @@ function TransitionEdgeComponent({
   source,
   target,
 }: EdgeProps) {
-  const { label, isActive, isDokkaebi } = (data ?? {}) as TransitionEdgeData
+  const { label, isActive, isDokkaebi, isHighlighted } = (data ?? {}) as TransitionEdgeData
   const isSelfLoop = source === target
 
   let edgePath: string
@@ -80,7 +81,11 @@ function TransitionEdgeComponent({
     ? isDokkaebi
       ? '#f59e0b'
       : '#3b82f6'
-    : 'var(--color-foreground)'
+    : isHighlighted
+      ? '#10b981'
+      : 'var(--color-foreground)'
+
+  const markerType = isActive ? 'active' : isHighlighted ? 'highlight' : 'default'
 
   return (
     <>
@@ -89,12 +94,12 @@ function TransitionEdgeComponent({
         path={edgePath}
         style={{
           stroke: strokeColor,
-          strokeWidth: isActive ? 2.5 : 1.5,
-          opacity: isActive ? 1 : 0.4,
+          strokeWidth: isActive ? 2.5 : isHighlighted ? 2 : 1.5,
+          opacity: isActive || isHighlighted ? 1 : 0.6,
           strokeDasharray: isActive ? '6 3' : 'none',
           transition: 'stroke 0.3s, opacity 0.3s',
         }}
-        markerEnd={`url(#arrow-${isActive ? 'active' : 'default'})`}
+        markerEnd={`url(#arrow-${markerType})`}
       />
       {label && (
         <foreignObject
@@ -111,7 +116,9 @@ function TransitionEdgeComponent({
                 ? isDokkaebi
                   ? 'text-amber-400 bg-amber-500/20 font-bold'
                   : 'text-blue-400 bg-blue-500/20 font-bold'
-                : 'text-muted-foreground'
+                : isHighlighted
+                  ? 'text-emerald-400 bg-emerald-500/20 font-bold'
+                  : 'text-muted-foreground'
               }
             `}
           >

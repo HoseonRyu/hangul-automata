@@ -18,6 +18,8 @@ interface AutomataGraphProps {
   initialEdges: Edge[]
   activeState?: string | null
   activeEdgeId?: string | null
+  highlightNodes?: string[]
+  highlightEdges?: string[]
   isDokkaebi?: boolean
   className?: string
 }
@@ -27,6 +29,8 @@ export function AutomataGraph({
   initialEdges,
   activeState,
   activeEdgeId,
+  highlightNodes,
+  highlightEdges,
   isDokkaebi,
   className = '',
 }: AutomataGraphProps) {
@@ -40,9 +44,10 @@ export function AutomataGraph({
         data: {
           ...node.data,
           isActive: node.id === activeState,
+          isHighlighted: highlightNodes?.includes(node.id) ?? false,
         },
       })),
-    [initialNodes, activeState]
+    [initialNodes, activeState, highlightNodes]
   )
 
   const edges = useMemo(
@@ -53,9 +58,10 @@ export function AutomataGraph({
           ...edge.data,
           isActive: edge.id === activeEdgeId,
           isDokkaebi: edge.id === activeEdgeId && isDokkaebi,
+          isHighlighted: highlightEdges?.includes(edge.id) ?? false,
         },
       })),
-    [initialEdges, activeEdgeId, isDokkaebi]
+    [initialEdges, activeEdgeId, isDokkaebi, highlightEdges]
   )
 
   return (
@@ -87,7 +93,7 @@ export function AutomataGraph({
               markerHeight="6"
               orient="auto-start-reverse"
             >
-              <path d="M 0 0 L 10 5 L 0 10 z" className="fill-foreground/40" />
+              <path d="M 0 0 L 10 5 L 0 10 z" className="fill-foreground/70" />
             </marker>
             <marker
               id="arrow-active"
@@ -99,6 +105,17 @@ export function AutomataGraph({
               orient="auto-start-reverse"
             >
               <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" />
+            </marker>
+            <marker
+              id="arrow-highlight"
+              viewBox="0 0 10 10"
+              refX="10"
+              refY="5"
+              markerWidth="6"
+              markerHeight="6"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981" />
             </marker>
           </defs>
         </svg>

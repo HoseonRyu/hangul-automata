@@ -71,7 +71,9 @@
     "to": "To",
     "output": "출력",
     "result": "결과",
-    "hangul": "한글"
+    "hangul": "한글",
+    "modeExplain": "설명",
+    "modeInteractive": "체험"
   },
   "footer": {
     "description": "오토마타 이론을 활용한 한글 입력 원리 시각화",
