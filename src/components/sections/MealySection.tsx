@@ -28,21 +28,32 @@ export function MealySection() {
     setHighlight((prev) => prev?.key === key ? null : { key, nodes, edges })
   }, [])
   const { trace, error, output } = useMealyTrace(mealyConfig, input)
-  const playback = usePlayback({ totalSteps: trace.length })
+  const playback = usePlayback({ totalSteps: trace.length * 2 })
 
-  const currentStep = playback.currentStep
+  const rawStep = playback.currentStep
+  const traceIndex = rawStep >= 0 ? Math.floor(rawStep / 2) : -1
+  const isTransition = rawStep >= 0 && rawStep % 2 === 0
+
   const activeState =
-    currentStep >= 0 ? trace[currentStep]?.toState : mealyConfig.start
+    traceIndex >= 0
+      ? isTransition
+        ? trace[traceIndex]?.fromState
+        : trace[traceIndex]?.toState
+      : mealyConfig.start
   const activeEdge =
-    currentStep >= 0 ? mealyEdges.find(
-      (e) =>
-        e.source === trace[currentStep]?.fromState &&
-        e.target === trace[currentStep]?.toState &&
-        (e.data as { symbols?: string[] })?.symbols?.includes(trace[currentStep]?.symbol)
-    )?.id ?? null : null
+    traceIndex >= 0 && isTransition
+      ? mealyEdges.find(
+          (e) =>
+            e.source === trace[traceIndex]?.fromState &&
+            e.target === trace[traceIndex]?.toState &&
+            (e.data as { symbols?: string[] })?.symbols?.includes(trace[traceIndex]?.symbol)
+        )?.id ?? null
+      : null
 
-  const visibleOutput = currentStep >= 0
-    ? trace[currentStep]?.cumulativeOutput ?? ''
+  const visibleOutput = traceIndex >= 0
+    ? isTransition
+      ? (traceIndex > 0 ? trace[traceIndex - 1]?.cumulativeOutput ?? '' : '')
+      : trace[traceIndex]?.cumulativeOutput ?? ''
     : ''
 
   const handleModeChange = (newMode: 'explain' | 'interactive') => {
@@ -226,7 +237,7 @@ export function MealySection() {
                     isAtStart={playback.isAtStart}
                     isAtEnd={playback.isAtEnd}
                     speed={playback.speed}
-                    currentStep={playback.currentStep}
+                    currentStep={traceIndex}
                     totalSteps={trace.length}
                     onPlay={playback.play}
                     onPause={playback.pause}
@@ -240,14 +251,14 @@ export function MealySection() {
 
                   <OutputPanel
                     output={visibleOutput}
-                    currentStep={currentStep}
+                    currentStep={traceIndex}
                     title={t('outputTitle')}
                   />
 
                   <div className="grow min-h-0 overflow-y-auto">
                     <TraceTable
                       trace={trace}
-                      currentStep={currentStep}
+                      currentStep={traceIndex}
                       type="mealy"
                       stepLabel={tc('step')}
                       fromLabel={tc('from')}
