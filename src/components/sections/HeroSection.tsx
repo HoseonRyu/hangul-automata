@@ -78,19 +78,10 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-2xl md:text-3xl text-muted-foreground mb-10"
+          className="text-2xl md:text-3xl text-muted-foreground mb-14"
         >
           {t('subtitle')}
         </motion.p>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-14"
-        >
-          {t('description')}
-        </motion.p>
-
         {/* Demo preview */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}

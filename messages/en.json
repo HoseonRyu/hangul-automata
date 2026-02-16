@@ -30,8 +30,7 @@
   },
   "mealy": {
     "title": "Mealy Machine — Automaton with Output",
-    "description": "Unlike a DFA, a Mealy Machine produces output during state transitions. Instead of accept/reject, it generates a transformed output string.",
-    "diff": "Key difference from DFA: transitions produce output, generating a transformed string instead of accept/reject decisions.",
+    "description": "Unlike a DFA, a Mealy Machine produces output during state transitions, generating a transformed string instead of accept/reject decisions.",
     "theoryPre": "A Mealy Machine is defined as a 6-tuple",
     "theoryPost": ":",
     "theoryS": "Finite set of states",

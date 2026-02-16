@@ -100,8 +100,7 @@ export function MealySection() {
           </button>
         </div>
       </div>
-      <p className="text-lg md:text-xl text-muted-foreground mb-4">{t('description')}</p>
-      <p className="text-base text-muted-foreground mb-6 italic">{t('diff')}</p>
+      <p className="text-lg md:text-xl text-muted-foreground mb-5">{t('description')}</p>
 
       <div className="grid grid-cols-1 lg:grid-cols-5 lg:h-[70vh] gap-5">
         {/* Graph — always same position */}

@@ -30,8 +30,7 @@
   },
   "mealy": {
     "title": "Mealy Machine — 출력이 있는 오토마타",
-    "description": "Mealy Machine은 DFA와 달리 상태 전이 시 출력을 생성합니다. 최종 상태 대신 입력에 대한 출력 변환이 핵심입니다.",
-    "diff": "DFA와의 차이: 전이 시 출력이 발생하며, 수락/거부 대신 변환된 출력 문자열을 생성합니다.",
+    "description": "DFA와 달리 상태 전이 시 출력을 생성하여, 수락/거부 대신 변환된 출력 문자열을 만드는 오토마타입니다.",
     "theoryPre": "Mealy Machine은 6-tuple",
     "theoryPost": "로 정의됩니다:",
     "theoryS": "상태의 유한 집합",
