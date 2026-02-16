@@ -83,7 +83,9 @@ export function TraceTable({
                   )}
                   {type === 'mealy' && (
                     <td className="px-3 py-1.5 text-center">
-                      {(step as MealyTraceStep).output}
+                      {i > (revealedStep ?? currentStep)
+                        ? <span className="text-muted-foreground/30">—</span>
+                        : (step as MealyTraceStep).output}
                     </td>
                   )}
                   {type === 'hangul' && (

@@ -260,6 +260,7 @@ export function MealySection() {
                     <TraceTable
                       trace={trace}
                       currentStep={traceIndex}
+                      revealedStep={isTransition ? traceIndex - 1 : traceIndex}
                       type="mealy"
                       stepLabel={tc('step')}
                       fromLabel={tc('from')}
