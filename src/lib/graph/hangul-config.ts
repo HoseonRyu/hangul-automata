@@ -13,6 +13,41 @@ const ROW2 = 200
 const ROW3 = 340
 const ROW4 = 480
 
+// Node size (w-20 = 80px) + padding for group backgrounds
+const NODE_SIZE = 80
+const GROUP_PAD = 40
+
+export const hangulGroupNodes: Node[] = [
+  {
+    id: 'group-start',
+    type: 'groupBackground',
+    position: { x: COL1 - GROUP_PAD, y: ROW2 - GROUP_PAD },
+    data: { label: 'Start', width: NODE_SIZE + GROUP_PAD * 2, height: NODE_SIZE + GROUP_PAD * 2, color: 'slate' },
+    zIndex: -1,
+  },
+  {
+    id: 'group-initial',
+    type: 'groupBackground',
+    position: { x: COL2 - GROUP_PAD, y: ROW2 - GROUP_PAD },
+    data: { label: '초성', width: NODE_SIZE + GROUP_PAD * 2, height: NODE_SIZE + GROUP_PAD * 2, color: 'emerald' },
+    zIndex: -1,
+  },
+  {
+    id: 'group-medial',
+    type: 'groupBackground',
+    position: { x: COL3 - GROUP_PAD, y: ROW1 - GROUP_PAD },
+    data: { label: '중성', width: NODE_SIZE + GROUP_PAD * 2, height: (ROW4 - ROW1) + NODE_SIZE + GROUP_PAD * 2, color: 'blue' },
+    zIndex: -1,
+  },
+  {
+    id: 'group-final',
+    type: 'groupBackground',
+    position: { x: COL4 - GROUP_PAD, y: ROW1 - GROUP_PAD },
+    data: { label: '종성', width: NODE_SIZE + GROUP_PAD * 2, height: (ROW4 - ROW1) + NODE_SIZE + GROUP_PAD * 2, color: 'amber' },
+    zIndex: -1,
+  },
+]
+
 export const hangulNodes: Node[] = [
   {
     id: 'S',
@@ -84,7 +119,7 @@ export const hangulEdges: Edge[] = [
     source: 'S',
     target: 'V',
     type: 'transitionEdge',
-    data: { label: 'C / 0', symbols: Array.from('rsefaqtdwczxvgREQTW') },
+    data: { label: 'C / 0', categoryLabel: 'C', symbols: Array.from('rsefaqtdwczxvgREQTW') },
   },
   // V -> vowel states
   {
@@ -92,28 +127,28 @@ export const hangulEdges: Edge[] = [
     source: 'V',
     target: 'O',
     type: 'transitionEdge',
-    data: { label: 'h / 1', symbols: ['h'] },
+    data: { label: 'h / 1', categoryLabel: 'o_h', symbols: ['h'] },
   },
   {
     id: 'V-n-U',
     source: 'V',
     target: 'U',
     type: 'transitionEdge',
-    data: { label: 'n / 1', symbols: ['n'] },
+    data: { label: 'n / 1', categoryLabel: 'o_n', symbols: ['n'] },
   },
   {
     id: 'V-kijum-A',
     source: 'V',
     target: 'A',
     type: 'transitionEdge',
-    data: { label: 'k,i,j,u,m / 1', symbols: ['k', 'i', 'j', 'u', 'm'] },
+    data: { label: 'k,i,j,u,m / 1', categoryLabel: 'a', symbols: ['k', 'i', 'j', 'u', 'm'] },
   },
   {
     id: 'V-ybl-I',
     source: 'V',
     target: 'I',
     type: 'transitionEdge',
-    data: { label: 'y,b,l,o,O,p,P / 1', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P'] },
+    data: { label: 'y,b,l,o,O,p,P / 1', categoryLabel: 'v_t', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P'] },
   },
   // O compound vowels
   {
@@ -145,28 +180,28 @@ export const hangulEdges: Edge[] = [
     source: 'A',
     target: 'K',
     type: 'transitionEdge',
-    data: { label: 'r,q / 2', symbols: ['r', 'q'] },
+    data: { label: 'r,q / 2', categoryLabel: 'c_K', symbols: ['r', 'q'] },
   },
   {
     id: 'OUAI-s-N',
     source: 'A',
     target: 'N',
     type: 'transitionEdge',
-    data: { label: 's / 2', symbols: ['s'] },
+    data: { label: 's / 2', categoryLabel: 'c_N', symbols: ['s'] },
   },
   {
     id: 'OUAI-f-R',
     source: 'A',
     target: 'R',
     type: 'transitionEdge',
-    data: { label: 'f / 2', symbols: ['f'] },
+    data: { label: 'f / 2', categoryLabel: 'c_R', symbols: ['f'] },
   },
   {
     id: 'OUAI-etc-L',
     source: 'A',
     target: 'L',
     type: 'transitionEdge',
-    data: { label: 'e,a,t,... / 2', symbols: Array.from('eatdwczxvgRT') },
+    data: { label: 'e,a,t,... / 2', categoryLabel: 'c_L', symbols: Array.from('eatdwczxvgRT') },
   },
   // 종성 -> vowel (dokkaebi: d.01)
   {
@@ -174,14 +209,14 @@ export const hangulEdges: Edge[] = [
     source: 'K',
     target: 'O',
     type: 'transitionEdge',
-    data: { label: 'h / d.01', symbols: ['h'], isDokkaebi: true },
+    data: { label: 'h / d.01', categoryLabel: 'V', symbols: ['h'], isDokkaebi: true },
   },
   {
     id: 'KNRL-vowel-A',
     source: 'K',
     target: 'A',
     type: 'transitionEdge',
-    data: { label: 'k,i,j,u,m / d.01', symbols: ['k', 'i', 'j', 'u', 'm'], isDokkaebi: true },
+    data: { label: 'k,i,j,u,m / d.01', categoryLabel: 'V', symbols: ['k', 'i', 'j', 'u', 'm'], isDokkaebi: true },
   },
   // 종성 -> I (dokkaebi with terminal vowels)
   {
@@ -189,7 +224,7 @@ export const hangulEdges: Edge[] = [
     source: 'K',
     target: 'I',
     type: 'transitionEdge',
-    data: { label: 'y,b,l,o,O,p,P / d.01', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P'], isDokkaebi: true },
+    data: { label: 'y,b,l,o,O,p,P / d.01', categoryLabel: 'V', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P'], isDokkaebi: true },
   },
   // 종성 -> new syllable (consonant: .0)
   {
@@ -197,7 +232,7 @@ export const hangulEdges: Edge[] = [
     source: 'L',
     target: 'V',
     type: 'transitionEdge',
-    data: { label: 'C / .0', symbols: Array.from('rsefaqtdwczxvgREQTW') },
+    data: { label: 'C / .0', categoryLabel: 'C', symbols: Array.from('rsefaqtdwczxvgREQTW') },
   },
   // Compound 종성
   {
@@ -213,7 +248,7 @@ export const hangulEdges: Edge[] = [
     source: 'K',
     target: 'V',
     type: 'transitionEdge',
-    data: { label: 'C\\t / .0', symbols: Array.from('rsefaqdwczxvgREQTW') },
+    data: { label: 'C\\t / .0', categoryLabel: 'c', symbols: Array.from('rsefaqdwczxvgREQTW') },
   },
   // N compound
   {
@@ -228,7 +263,7 @@ export const hangulEdges: Edge[] = [
     source: 'N',
     target: 'V',
     type: 'transitionEdge',
-    data: { label: 'C\\wg / .0', symbols: Array.from('rsefaqtdczxvREQTW') },
+    data: { label: 'C\\wg / .0', categoryLabel: 'c', symbols: Array.from('rsefaqtdczxvREQTW') },
   },
   // R compound
   {
@@ -243,7 +278,7 @@ export const hangulEdges: Edge[] = [
     source: 'R',
     target: 'V',
     type: 'transitionEdge',
-    data: { label: 'C\\raqtxvg / .0', symbols: Array.from('sefdwczEQTW') },
+    data: { label: 'C\\raqtxvg / .0', categoryLabel: 'c', symbols: Array.from('sefdwczEQTW') },
   },
   // OUAI -> V (쌍자음으로 새 음절)
   {
@@ -251,6 +286,6 @@ export const hangulEdges: Edge[] = [
     source: 'A',
     target: 'V',
     type: 'transitionEdge',
-    data: { label: 'E,Q,W / .0', symbols: ['E', 'Q', 'W'] },
+    data: { label: 'E,Q,W / .0', categoryLabel: 'D', symbols: ['E', 'Q', 'W'] },
   },
 ]

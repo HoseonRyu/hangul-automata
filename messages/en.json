@@ -53,6 +53,8 @@
     "codeTitle": "Syllable Code",
     "hangulTitle": "Hangul Output",
     "stateTitle": "State Diagram",
+    "regexTitle": "Syllable Structure Pattern",
+    "legendTitle": "Input Categories",
     "examples": "Examples"
   },
   "dokkaebi": {

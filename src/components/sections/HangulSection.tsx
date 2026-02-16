@@ -9,10 +9,22 @@ import { PlaybackControls } from '@/components/controls/PlaybackControls'
 import { TraceTable } from '@/components/panels/TraceTable'
 import { CodePanel } from '@/components/panels/CodePanel'
 import { HangulDisplay } from '@/components/panels/HangulDisplay'
-import { hangulNodes, hangulEdges } from '@/lib/graph/hangul-config'
+import { hangulNodes, hangulEdges, hangulGroupNodes } from '@/lib/graph/hangul-config'
 import { SYMBOLS_IN } from '@/lib/hangul/constants'
 import { useHangulTrace } from '@/hooks/useAutomataTrace'
 import { usePlayback } from '@/hooks/usePlayback'
+
+const allNodes = [...hangulGroupNodes, ...hangulNodes]
+
+const categories = [
+  { symbol: 'C', desc: 'All consonants', keys: 'r,s,e,f,a,q,t,d,w,c,z,x,v,g + R,E,Q,T,W' },
+  { symbol: 'c', desc: 'Single consonants', keys: 'r,s,e,f,a,q,t,d,w,c,z,x,v,g' },
+  { symbol: 'D', desc: 'Double consonants', keys: 'R,E,Q,T,W' },
+  { symbol: 'a', desc: 'Simple vowels', keys: 'k,i,j,u,m' },
+  { symbol: 'o', desc: 'Compound vowel starters', keys: 'h(ㅗ), n(ㅜ)' },
+  { symbol: 'v', desc: 'Terminal vowels', keys: 'y,b,l,o,O,p,P' },
+  { symbol: 'V', desc: 'All vowels', keys: 'a + o + v' },
+] as const
 
 export function HangulSection() {
   const t = useTranslations('hangul')
@@ -44,10 +56,30 @@ export function HangulSection() {
       <h2 className="text-4xl md:text-5xl font-bold mb-5">{t('title')}</h2>
       <p className="text-lg md:text-xl text-muted-foreground mb-6">{t('description')}</p>
 
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div className="rounded-lg border border-border bg-background/50 p-4">
+          <h4 className="text-sm font-semibold text-muted-foreground mb-2">{t('regexTitle')}</h4>
+          <p className="font-mono text-sm leading-relaxed">
+            S = [ C · (a + o<sub>h</sub> + o<sub>n</sub> + v<sub>t</sub>) · (c + D + &Lambda;) ]*
+          </p>
+        </div>
+        <div className="rounded-lg border border-border bg-background/50 p-4">
+          <h4 className="text-sm font-semibold text-muted-foreground mb-2">{t('legendTitle')}</h4>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs font-mono">
+            {categories.map((cat) => (
+              <div key={cat.symbol} className="flex gap-1.5">
+                <span className="font-bold text-foreground shrink-0">{cat.symbol}</span>
+                <span className="text-muted-foreground truncate">{cat.keys}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <div className="lg:col-span-3">
           <AutomataGraph
-            initialNodes={hangulNodes}
+            initialNodes={allNodes}
             initialEdges={hangulEdges}
             activeState={activeState}
             activeEdgeId={activeEdge}

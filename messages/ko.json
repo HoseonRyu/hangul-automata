@@ -53,6 +53,8 @@
     "codeTitle": "음절 코드",
     "hangulTitle": "한글 출력",
     "stateTitle": "상태 다이어그램",
+    "regexTitle": "음절 구조 패턴",
+    "legendTitle": "입력 카테고리",
     "examples": "예제"
   },
   "dokkaebi": {

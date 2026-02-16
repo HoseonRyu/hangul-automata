@@ -1,6 +1,6 @@
 'use client'
 
-import { memo } from 'react'
+import React, { memo } from 'react'
 import {
   BaseEdge,
   getBezierPath,
@@ -10,11 +10,23 @@ import {
 
 interface TransitionEdgeData {
   label?: string
+  categoryLabel?: string
   symbols?: string[]
   isActive?: boolean
   isDokkaebi?: boolean
   isHighlighted?: boolean
   [key: string]: unknown
+}
+
+function parseCategoryLabel(text: string): React.ReactNode {
+  // Parse subscript notation: "o_h" → o<sub>h</sub>
+  const parts = text.split(/(_[a-zA-Z]+)/g)
+  return parts.map((part, i) => {
+    if (part.startsWith('_')) {
+      return <sub key={i}>{part.slice(1)}</sub>
+    }
+    return part
+  })
 }
 
 function TransitionEdgeComponent({
@@ -29,7 +41,8 @@ function TransitionEdgeComponent({
   source,
   target,
 }: EdgeProps) {
-  const { label, isActive, isDokkaebi, isHighlighted } = (data ?? {}) as TransitionEdgeData
+  const { label, categoryLabel, isActive, isDokkaebi, isHighlighted } = (data ?? {}) as TransitionEdgeData
+  const hasDualLabel = !!categoryLabel && !!label
   const isSelfLoop = source === target
 
   let edgePath: string
@@ -101,17 +114,18 @@ function TransitionEdgeComponent({
         }}
         markerEnd={`url(#arrow-${markerType})`}
       />
-      {label && (
+      {(label || categoryLabel) && (
         <foreignObject
           x={labelX - 50}
-          y={labelY - 14}
+          y={hasDualLabel ? labelY - 20 : labelY - 14}
           width={100}
-          height={28}
+          height={hasDualLabel ? 42 : 28}
           className="pointer-events-none"
         >
           <div
             className={`
-              text-center text-sm font-mono px-1.5 py-0.5 rounded
+              text-center font-mono px-1.5 rounded flex flex-col items-center justify-center
+              ${hasDualLabel ? 'py-0' : 'py-0.5'}
               ${isActive
                 ? isDokkaebi
                   ? 'text-amber-400 bg-amber-500/20 font-bold'
@@ -122,7 +136,14 @@ function TransitionEdgeComponent({
               }
             `}
           >
-            {label}
+            {hasDualLabel ? (
+              <>
+                <span className="text-sm leading-tight">{parseCategoryLabel(categoryLabel)}</span>
+                <span className="text-[10px] leading-tight opacity-50">{label}</span>
+              </>
+            ) : (
+              <span className="text-sm">{label}</span>
+            )}
           </div>
         </foreignObject>
       )}

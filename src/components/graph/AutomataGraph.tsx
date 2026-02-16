@@ -12,6 +12,7 @@ import {
 import '@xyflow/react/dist/style.css'
 import { StateNode } from './StateNode'
 import { TransitionEdge } from './TransitionEdge'
+import { GroupBackground } from './GroupBackground'
 
 interface AutomataGraphProps {
   initialNodes: Node[]
@@ -34,7 +35,7 @@ export function AutomataGraph({
   isDokkaebi,
   className = '',
 }: AutomataGraphProps) {
-  const nodeTypes: NodeTypes = useMemo(() => ({ stateNode: StateNode }), [])
+  const nodeTypes: NodeTypes = useMemo(() => ({ stateNode: StateNode, groupBackground: GroupBackground }), [])
   const edgeTypes: EdgeTypes = useMemo(() => ({ transitionEdge: TransitionEdge }), [])
 
   const nodes = useMemo(
@@ -43,8 +44,10 @@ export function AutomataGraph({
         ...node,
         data: {
           ...node.data,
-          isActive: node.id === activeState,
-          isHighlighted: highlightNodes?.includes(node.id) ?? false,
+          ...(node.type === 'stateNode' && {
+            isActive: node.id === activeState,
+            isHighlighted: highlightNodes?.includes(node.id) ?? false,
+          }),
         },
       })),
     [initialNodes, activeState, highlightNodes]
