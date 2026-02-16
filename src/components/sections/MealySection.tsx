@@ -65,6 +65,7 @@ export function MealySection() {
     }
   }
 
+  const math = 'font-serif italic'
   const allEdgeIds = mealyEdges.map((e) => e.id)
   const hlClass = (key: string) =>
     highlight?.key === key
@@ -128,15 +129,15 @@ export function MealySection() {
             >
               {/* Mealy 정의 */}
               <div className="p-5 rounded-lg bg-muted/30 border border-border/50 grow">
-                <p className="text-lg font-medium mb-4">{t('theory')}</p>
-                <ul className="text-base text-muted-foreground space-y-2 font-mono">
-                  <li>{t('theoryS')}</li>
-                  <li>{t('theoryS0')}</li>
-                  <li>{t('theorySigma')}</li>
-                  <li>{t('theoryLambda')}</li>
-                  <li>{t('theoryT')}</li>
-                  <li>{t('theoryG')}</li>
-                </ul>
+                <p className="text-lg font-medium mb-4">{t('theoryPre')} <span className={`${math} text-foreground/80`}>(S, S₀, Σ, Λ, T, G)</span>{t('theoryPost')}</p>
+                <div className="text-base text-muted-foreground space-y-2.5">
+                  <div><span className={`${math} text-foreground/80`}>S</span> <span className="text-muted-foreground/30 mx-1">–</span> {t('theoryS')}</div>
+                  <div><span className={`${math} text-foreground/80`}>S₀ ∈ S</span> <span className="text-muted-foreground/30 mx-1">–</span> {t('theoryS0')}</div>
+                  <div><span className={`${math} text-foreground/80`}>Σ</span> <span className="text-muted-foreground/30 mx-1">–</span> {t('theorySigma')}</div>
+                  <div><span className={`${math} text-foreground/80`}>Λ</span> <span className="text-muted-foreground/30 mx-1">–</span> {t('theoryLambda')}</div>
+                  <div><span className={`${math} text-foreground/80`}>T : S × Σ → S</span> <span className="text-muted-foreground/30 mx-1">–</span> {t('theoryT')}</div>
+                  <div><span className={`${math} text-foreground/80`}>G : S × Σ → Λ</span> <span className="text-muted-foreground/30 mx-1">–</span> {t('theoryG')}</div>
+                </div>
               </div>
 
               {/* 6-tuple 구성 + 전이/출력 함수 (하나의 카드) */}
@@ -144,19 +145,19 @@ export function MealySection() {
                 <p className="text-sm text-blue-400 mb-3">{t('exampleConfig')}</p>
                 <div className="text-base space-y-1.5 font-mono">
                   <button type="button" className={`${btnBase} ${hlClass('S')} block text-left w-full`} onClick={() => toggleHighlight('S', ['q0', 'q1', 'q2'])}>
-                    <span className="text-muted-foreground">S = </span>
+                    <span className={`${math} text-muted-foreground`}>S</span><span className="text-muted-foreground"> = </span>
                     {'{ '}<span className="text-blue-400">q0</span>{', '}<span className="text-blue-400">q1</span>{', '}<span className="text-blue-400">q2</span>{' }'}
                   </button>
                   <button type="button" className={`${btnBase} ${hlClass('S0')} block text-left w-full`} onClick={() => toggleHighlight('S0', ['q0'])}>
-                    <span className="text-muted-foreground">S{'\u2080'} = </span>
+                    <span className={`${math} text-muted-foreground`}>S₀</span><span className="text-muted-foreground"> = </span>
                     <span className="text-blue-400">q0</span>
                   </button>
                   <button type="button" className={`${btnBase} ${hlClass('Σ')} block text-left w-full`} onClick={() => toggleHighlight('Σ', undefined, allEdgeIds)}>
-                    <span className="text-muted-foreground">{'\u03A3'} = </span>
+                    <span className={`${math} text-muted-foreground`}>Σ</span><span className="text-muted-foreground"> = </span>
                     {'{ '}<span className="text-foreground">0</span>{', '}<span className="text-foreground">1</span>{' }'}
                   </button>
                   <button type="button" className={`${btnBase} ${hlClass('Λ')} block text-left w-full`} onClick={() => toggleHighlight('Λ', undefined, allEdgeIds)}>
-                    <span className="text-muted-foreground">{'\u039B'} = </span>
+                    <span className={`${math} text-muted-foreground`}>Λ</span><span className="text-muted-foreground"> = </span>
                     {'{ '}<span className="text-green-400">a</span>{', '}<span className="text-green-400">b</span>{', '}<span className="text-green-400">c</span>{', '}<span className="text-green-400">d</span>{' }'}
                   </button>
                 </div>
@@ -166,22 +167,22 @@ export function MealySection() {
                     <p className="text-sm text-muted-foreground mb-2">{t('exampleT')}</p>
                     <div className="space-y-0.5 text-base font-mono">
                       <button type="button" className={`${btnBase} ${hlClass('T-q0-0')} block text-left w-full`} onClick={() => toggleHighlight('T-q0-0', ['q0', 'q1'], ['q0-01-q1'])}>
-                        <span className="text-muted-foreground">T(</span>q0, 0<span className="text-muted-foreground">) = </span>q1
+                        <span className={`${math} text-muted-foreground`}>T</span><span className="text-muted-foreground">(</span>q0, 0<span className="text-muted-foreground">) = </span>q1
                       </button>
                       <button type="button" className={`${btnBase} ${hlClass('T-q0-1')} block text-left w-full`} onClick={() => toggleHighlight('T-q0-1', ['q0', 'q1'], ['q0-01-q1'])}>
-                        <span className="text-muted-foreground">T(</span>q0, 1<span className="text-muted-foreground">) = </span>q1
+                        <span className={`${math} text-muted-foreground`}>T</span><span className="text-muted-foreground">(</span>q0, 1<span className="text-muted-foreground">) = </span>q1
                       </button>
                       <button type="button" className={`${btnBase} ${hlClass('T-q1-0')} block text-left w-full`} onClick={() => toggleHighlight('T-q1-0', ['q1'], ['q1-0-q1'])}>
-                        <span className="text-muted-foreground">T(</span>q1, 0<span className="text-muted-foreground">) = </span>q1
+                        <span className={`${math} text-muted-foreground`}>T</span><span className="text-muted-foreground">(</span>q1, 0<span className="text-muted-foreground">) = </span>q1
                       </button>
                       <button type="button" className={`${btnBase} ${hlClass('T-q1-1')} block text-left w-full`} onClick={() => toggleHighlight('T-q1-1', ['q1', 'q2'], ['q1-1-q2'])}>
-                        <span className="text-muted-foreground">T(</span>q1, 1<span className="text-muted-foreground">) = </span>q2
+                        <span className={`${math} text-muted-foreground`}>T</span><span className="text-muted-foreground">(</span>q1, 1<span className="text-muted-foreground">) = </span>q2
                       </button>
                       <button type="button" className={`${btnBase} ${hlClass('T-q2-0')} block text-left w-full`} onClick={() => toggleHighlight('T-q2-0', ['q2', 'q0'], ['q2-01-q0'])}>
-                        <span className="text-muted-foreground">T(</span>q2, 0<span className="text-muted-foreground">) = </span>q0
+                        <span className={`${math} text-muted-foreground`}>T</span><span className="text-muted-foreground">(</span>q2, 0<span className="text-muted-foreground">) = </span>q0
                       </button>
                       <button type="button" className={`${btnBase} ${hlClass('T-q2-1')} block text-left w-full`} onClick={() => toggleHighlight('T-q2-1', ['q2', 'q0'], ['q2-01-q0'])}>
-                        <span className="text-muted-foreground">T(</span>q2, 1<span className="text-muted-foreground">) = </span>q0
+                        <span className={`${math} text-muted-foreground`}>T</span><span className="text-muted-foreground">(</span>q2, 1<span className="text-muted-foreground">) = </span>q0
                       </button>
                     </div>
                   </div>
@@ -189,22 +190,22 @@ export function MealySection() {
                     <p className="text-sm text-muted-foreground mb-2">{t('exampleG')}</p>
                     <div className="space-y-0.5 text-base font-mono">
                       <button type="button" className={`${btnBase} ${hlClass('G-q0-0')} block text-left w-full`} onClick={() => toggleHighlight('G-q0-0', ['q0', 'q1'], ['q0-01-q1'])}>
-                        <span className="text-muted-foreground">G(</span>q0, 0<span className="text-muted-foreground">) = </span><span className="text-green-400">a</span>
+                        <span className={`${math} text-muted-foreground`}>G</span><span className="text-muted-foreground">(</span>q0, 0<span className="text-muted-foreground">) = </span><span className="text-green-400">a</span>
                       </button>
                       <button type="button" className={`${btnBase} ${hlClass('G-q0-1')} block text-left w-full`} onClick={() => toggleHighlight('G-q0-1', ['q0', 'q1'], ['q0-01-q1'])}>
-                        <span className="text-muted-foreground">G(</span>q0, 1<span className="text-muted-foreground">) = </span><span className="text-green-400">a</span>
+                        <span className={`${math} text-muted-foreground`}>G</span><span className="text-muted-foreground">(</span>q0, 1<span className="text-muted-foreground">) = </span><span className="text-green-400">a</span>
                       </button>
                       <button type="button" className={`${btnBase} ${hlClass('G-q1-0')} block text-left w-full`} onClick={() => toggleHighlight('G-q1-0', ['q1'], ['q1-0-q1'])}>
-                        <span className="text-muted-foreground">G(</span>q1, 0<span className="text-muted-foreground">) = </span><span className="text-green-400">b</span>
+                        <span className={`${math} text-muted-foreground`}>G</span><span className="text-muted-foreground">(</span>q1, 0<span className="text-muted-foreground">) = </span><span className="text-green-400">b</span>
                       </button>
                       <button type="button" className={`${btnBase} ${hlClass('G-q1-1')} block text-left w-full`} onClick={() => toggleHighlight('G-q1-1', ['q1', 'q2'], ['q1-1-q2'])}>
-                        <span className="text-muted-foreground">G(</span>q1, 1<span className="text-muted-foreground">) = </span><span className="text-green-400">c</span>
+                        <span className={`${math} text-muted-foreground`}>G</span><span className="text-muted-foreground">(</span>q1, 1<span className="text-muted-foreground">) = </span><span className="text-green-400">c</span>
                       </button>
                       <button type="button" className={`${btnBase} ${hlClass('G-q2-0')} block text-left w-full`} onClick={() => toggleHighlight('G-q2-0', ['q2', 'q0'], ['q2-01-q0'])}>
-                        <span className="text-muted-foreground">G(</span>q2, 0<span className="text-muted-foreground">) = </span><span className="text-green-400">d</span>
+                        <span className={`${math} text-muted-foreground`}>G</span><span className="text-muted-foreground">(</span>q2, 0<span className="text-muted-foreground">) = </span><span className="text-green-400">d</span>
                       </button>
                       <button type="button" className={`${btnBase} ${hlClass('G-q2-1')} block text-left w-full`} onClick={() => toggleHighlight('G-q2-1', ['q2', 'q0'], ['q2-01-q0'])}>
-                        <span className="text-muted-foreground">G(</span>q2, 1<span className="text-muted-foreground">) = </span><span className="text-green-400">d</span>
+                        <span className={`${math} text-muted-foreground`}>G</span><span className="text-muted-foreground">(</span>q2, 1<span className="text-muted-foreground">) = </span><span className="text-green-400">d</span>
                       </button>
                     </div>
                   </div>

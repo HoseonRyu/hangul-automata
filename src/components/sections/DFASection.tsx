@@ -59,6 +59,7 @@ export function DFASection() {
     }
   }
 
+  const math = 'font-serif italic'
   const allEdgeIds = dfaEdges.map((e) => e.id)
   const hlClass = (key: string) =>
     highlight?.key === key
@@ -121,13 +122,13 @@ export function DFASection() {
             >
               {/* DFA 정의 */}
               <div className="p-5 rounded-lg bg-muted/30 border border-border/50 grow">
-                <p className="text-lg font-medium mb-4">{t('theory')}</p>
-                <div className="text-base text-muted-foreground font-mono space-y-2">
-                  <div>{t('theoryQ')}</div>
-                  <div>{t('theorySigma')}</div>
-                  <div>{t('theoryDelta')}</div>
-                  <div>{t('theoryQ0')}</div>
-                  <div>{t('theoryF')}</div>
+                <p className="text-lg font-medium mb-4">{t('theoryPre')} <span className={`${math} text-foreground/80`}>(Q, Σ, δ, q₀, F)</span>{t('theoryPost')}</p>
+                <div className="text-base text-muted-foreground space-y-2.5">
+                  <div><span className={`${math} text-foreground/80`}>Q</span> <span className="text-muted-foreground/30 mx-1">–</span> {t('theoryQ')}</div>
+                  <div><span className={`${math} text-foreground/80`}>Σ</span> <span className="text-muted-foreground/30 mx-1">–</span> {t('theorySigma')}</div>
+                  <div><span className={`${math} text-foreground/80`}>q₀</span> <span className="text-muted-foreground/30 mx-1">–</span> {t('theoryQ0')}</div>
+                  <div><span className={`${math} text-foreground/80`}>F ⊆ Q</span> <span className="text-muted-foreground/30 mx-1">–</span> {t('theoryF')}</div>
+                  <div><span className={`${math} text-foreground/80`}>δ : Q × Σ → Q</span> <span className="text-muted-foreground/30 mx-1">–</span> {t('theoryDelta')}</div>
                 </div>
               </div>
 
@@ -136,16 +137,16 @@ export function DFASection() {
                 <p className="text-sm text-blue-400 mb-3">{t('exampleConfig')}</p>
                 <div className="text-base font-mono space-y-2">
                   <button type="button" className={`${btnBase} ${hlClass('Q')} block text-left w-full`} onClick={() => toggleHighlight('Q', ['q0', 'q1', 'q2'])}>
-                    <span className="text-muted-foreground">Q = </span>{'{ '}<span className="text-blue-400">q0</span>{', '}<span className="text-blue-400">q1</span>{', '}<span className="text-blue-400">q2</span>{' }'}
+                    <span className={`${math} text-muted-foreground`}>Q</span><span className="text-muted-foreground"> = </span>{'{ '}<span className="text-blue-400">q0</span>{', '}<span className="text-blue-400">q1</span>{', '}<span className="text-blue-400">q2</span>{' }'}
                   </button>
                   <button type="button" className={`${btnBase} ${hlClass('Σ')} block text-left w-full`} onClick={() => toggleHighlight('Σ', undefined, allEdgeIds)}>
-                    <span className="text-muted-foreground">{'\u03A3'} = </span>{'{ '}<span className="text-foreground">0</span>{', '}<span className="text-foreground">1</span>{' }'}
+                    <span className={`${math} text-muted-foreground`}>Σ</span><span className="text-muted-foreground"> = </span>{'{ '}<span className="text-foreground">0</span>{', '}<span className="text-foreground">1</span>{' }'}
                   </button>
                   <button type="button" className={`${btnBase} ${hlClass('q0')} block text-left w-full`} onClick={() => toggleHighlight('q0', ['q0'])}>
-                    <span className="text-muted-foreground">q{'\u2080'} = </span><span className="text-blue-400">q0</span>
+                    <span className={`${math} text-muted-foreground`}>q₀</span><span className="text-muted-foreground"> = </span><span className="text-blue-400">q0</span>
                   </button>
                   <button type="button" className={`${btnBase} ${hlClass('F')} block text-left w-full`} onClick={() => toggleHighlight('F', ['q1', 'q2'])}>
-                    <span className="text-muted-foreground">F = </span>{'{ '}<span className="text-green-400">q1</span>{', '}<span className="text-green-400">q2</span>{' }'}
+                    <span className={`${math} text-muted-foreground`}>F</span><span className="text-muted-foreground"> = </span>{'{ '}<span className="text-green-400">q1</span>{', '}<span className="text-green-400">q2</span>{' }'}
                   </button>
                 </div>
 
@@ -153,22 +154,22 @@ export function DFASection() {
                   <p className="text-sm text-muted-foreground mb-2">{t('exampleDelta')}</p>
                   <div className="text-base font-mono space-y-1.5">
                     <button type="button" className={`${btnBase} ${hlClass('δ-q0-0')} block text-left w-full`} onClick={() => toggleHighlight('δ-q0-0', ['q0', 'q1'], ['q0-0-q1'])}>
-                      <span className="text-muted-foreground">{'\u03B4'}(</span>q0, 0<span className="text-muted-foreground">) = </span>q1
+                      <span className={`${math} text-muted-foreground`}>δ</span><span className="text-muted-foreground">(</span>q0, 0<span className="text-muted-foreground">) = </span>q1
                     </button>
                     <button type="button" className={`${btnBase} ${hlClass('δ-q0-1')} block text-left w-full`} onClick={() => toggleHighlight('δ-q0-1', ['q0', 'q2'], ['q0-1-q2'])}>
-                      <span className="text-muted-foreground">{'\u03B4'}(</span>q0, 1<span className="text-muted-foreground">) = </span>q2
+                      <span className={`${math} text-muted-foreground`}>δ</span><span className="text-muted-foreground">(</span>q0, 1<span className="text-muted-foreground">) = </span>q2
                     </button>
                     <button type="button" className={`${btnBase} ${hlClass('δ-q1-0')} block text-left w-full`} onClick={() => toggleHighlight('δ-q1-0', ['q1'], ['q1-0-q1'])}>
-                      <span className="text-muted-foreground">{'\u03B4'}(</span>q1, 0<span className="text-muted-foreground">) = </span>q1
+                      <span className={`${math} text-muted-foreground`}>δ</span><span className="text-muted-foreground">(</span>q1, 0<span className="text-muted-foreground">) = </span>q1
                     </button>
                     <button type="button" className={`${btnBase} ${hlClass('δ-q1-1')} block text-left w-full`} onClick={() => toggleHighlight('δ-q1-1', ['q1', 'q2'], ['q1-1-q2'])}>
-                      <span className="text-muted-foreground">{'\u03B4'}(</span>q1, 1<span className="text-muted-foreground">) = </span>q2
+                      <span className={`${math} text-muted-foreground`}>δ</span><span className="text-muted-foreground">(</span>q1, 1<span className="text-muted-foreground">) = </span>q2
                     </button>
                     <button type="button" className={`${btnBase} ${hlClass('δ-q2-0')} block text-left w-full`} onClick={() => toggleHighlight('δ-q2-0', ['q2', 'q0'], ['q2-0-q0'])}>
-                      <span className="text-muted-foreground">{'\u03B4'}(</span>q2, 0<span className="text-muted-foreground">) = </span>q0
+                      <span className={`${math} text-muted-foreground`}>δ</span><span className="text-muted-foreground">(</span>q2, 0<span className="text-muted-foreground">) = </span>q0
                     </button>
                     <button type="button" className={`${btnBase} ${hlClass('δ-q2-1')} block text-left w-full`} onClick={() => toggleHighlight('δ-q2-1', ['q2', 'q1'], ['q2-1-q1'])}>
-                      <span className="text-muted-foreground">{'\u03B4'}(</span>q2, 1<span className="text-muted-foreground">) = </span>q1
+                      <span className={`${math} text-muted-foreground`}>δ</span><span className="text-muted-foreground">(</span>q2, 1<span className="text-muted-foreground">) = </span>q1
                     </button>
                   </div>
                 </div>
