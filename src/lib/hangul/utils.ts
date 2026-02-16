@@ -8,6 +8,19 @@ const VOWEL_ALIASES: Record<string, string> = {
   'P': 'ul',  // ㅖ
 }
 
+// 초성 인덱스 → 호환용 자모(U+3131~U+314E) 매핑
+const CHOSEONG_TO_JAMO = [
+  0x3131, 0x3132, 0x3134, 0x3137, 0x3138, 0x3139, 0x3141, 0x3142, 0x3143, 0x3145,
+  0x3146, 0x3147, 0x3148, 0x3149, 0x314A, 0x314B, 0x314C, 0x314D, 0x314E,
+]
+
+/** 영문 자음 키 → 한글 자모 문자 (예: 's' → 'ㄴ') */
+export function consonantToJamo(key: string): string {
+  const idx = FIRST.indexOf(key)
+  if (idx === -1) return key
+  return String.fromCharCode(CHOSEONG_TO_JAMO[idx])
+}
+
 export function strDiff(str1: string, str2: string): string {
   let ret = ''
   for (const c of str1) {
@@ -67,7 +80,13 @@ export function convertToHangul(query: string, syllableCode: string): string {
 
   let output = ''
   for (let i = 0; i < segmentsQuery.length; i++) {
-    output += hangulChar(segmentsQuery[i], segmentsCode[i])
+    const char = hangulChar(segmentsQuery[i], segmentsCode[i])
+    if (char) {
+      output += char
+    } else if (!segmentsCode[i].includes('1')) {
+      // 모음 없이 자음만 있는 세그먼트 → 자모로 표시
+      output += consonantToJamo(segmentsQuery[i])
+    }
   }
 
   return output

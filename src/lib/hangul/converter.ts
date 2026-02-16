@@ -1,7 +1,7 @@
 import { MealyMachine } from '@/lib/automata/mealy-machine'
 import type { HangulTraceStep } from '@/lib/automata/types'
 import { STATES, SYMBOLS_IN, SYMBOLS_OUT, TRANSFERS_ME, START } from './constants'
-import { convertToHangul, hangulChar } from './utils'
+import { convertToHangul, hangulChar, consonantToJamo } from './utils'
 
 export class HangulConverter {
   private machine: MealyMachine
@@ -89,8 +89,8 @@ export class HangulConverter {
 
       // For the last segment, it might be incomplete (no vowel yet)
       if (si === lenList.length - 1 && !segCode.includes('1')) {
-        // Only consonant so far — show the raw character
-        output += segQuery
+        // Only consonant so far — show Korean jamo
+        output += consonantToJamo(segQuery)
       } else {
         const char = hangulChar(segQuery, segCode)
         output += char || segQuery
