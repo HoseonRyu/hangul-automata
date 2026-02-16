@@ -34,8 +34,8 @@ export function TraceTable({
   if (trace.length === 0) return null
 
   return (
-    <div className={`rounded-lg border border-border overflow-hidden ${className}`}>
-      <div className="overflow-x-auto max-h-[240px] overflow-y-auto">
+    <div className={`rounded-lg border border-border overflow-hidden h-full flex flex-col ${className}`}>
+      <div className="overflow-x-auto overflow-y-auto flex-1 min-h-0">
         <table className="w-full text-base">
           <thead className="sticky top-0">
             <tr className="bg-muted/50 text-muted-foreground text-sm">
