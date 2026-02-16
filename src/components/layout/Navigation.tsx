@@ -29,6 +29,7 @@ export function Navigation() {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id)
+            history.replaceState(null, '', entry.target.id === 'hero' ? window.location.pathname : `#${entry.target.id}`)
           }
         }
       },
@@ -52,10 +53,19 @@ export function Navigation() {
     })
   }
 
+  useEffect(() => {
+    const hash = window.location.hash.slice(1)
+    if (hash) {
+      const el = document.getElementById(hash)
+      if (el) el.scrollIntoView({ block: 'start' })
+    }
+  }, [])
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id)
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      history.replaceState(null, '', id === 'hero' ? window.location.pathname : `#${id}`)
     }
   }
 
