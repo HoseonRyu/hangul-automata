@@ -17,9 +17,34 @@ const codeColors: Record<string, string> = {
   'd': 'text-amber-400 bg-amber-500/15', // 도깨비불
 }
 
+type Segment =
+  | { type: 'normal'; char: string; index: number }
+  | { type: 'cancelled'; chars: { char: string; index: number }[] }
+
+function buildSegments(code: string): Segment[] {
+  const segments: Segment[] = []
+  let i = 0
+  while (i < code.length) {
+    // Check if this char + next is a "Xd" cancelled pair
+    if (i + 1 < code.length && code[i + 1] === 'd') {
+      segments.push({
+        type: 'cancelled',
+        chars: [
+          { char: code[i], index: i },
+          { char: 'd', index: i + 1 },
+        ],
+      })
+      i += 2
+    } else {
+      segments.push({ type: 'normal', char: code[i], index: i })
+      i++
+    }
+  }
+  return segments
+}
+
 export function CodePanel({ code, currentStep, title, className = '' }: CodePanelProps) {
-  // Show code up to currentStep + 1 characters of the raw output
-  const visibleCode = code.slice(0, Math.max(0, currentStep + 1) * 2 + 2)
+  const segments = buildSegments(code)
 
   return (
     <div className={`rounded-lg border border-border p-4 ${className}`}>
@@ -28,19 +53,61 @@ export function CodePanel({ code, currentStep, title, className = '' }: CodePane
       )}
       <div className="font-mono text-xl min-h-[2.5rem] flex items-center flex-wrap gap-1">
         <AnimatePresence mode="popLayout">
-          {Array.from(code).map((char, i) => (
-            <motion.span
-              key={`${i}-${char}`}
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className={`
-                inline-block px-1.5 py-0.5 rounded text-base
-                ${codeColors[char] || 'text-foreground'}
-              `}
-            >
-              {char}
-            </motion.span>
-          ))}
+          {segments.map((seg) => {
+            if (seg.type === 'normal') {
+              return (
+                <motion.span
+                  key={`${seg.index}-${seg.char}`}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className={`
+                    inline-block px-1.5 py-0.5 rounded text-base
+                    ${codeColors[seg.char] || 'text-foreground'}
+                  `}
+                >
+                  {seg.char}
+                </motion.span>
+              )
+            }
+
+            // Cancelled pair: wrap together with diagonal red slash
+            const first = seg.chars[0]
+            const second = seg.chars[1]
+            return (
+              <motion.span
+                key={`cancelled-${first.index}`}
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="relative inline-flex gap-0.5 overflow-hidden"
+              >
+                <span
+                  className={`inline-block px-1.5 py-0.5 rounded text-base opacity-35 ${codeColors[first.char] || 'text-foreground'}`}
+                >
+                  {first.char}
+                </span>
+                <span
+                  className={`inline-block px-1.5 py-0.5 rounded text-base opacity-35 ${codeColors[second.char] || 'text-foreground'}`}
+                >
+                  {second.char}
+                </span>
+                {/* Diagonal red slash across the pair */}
+                <svg
+                  className="absolute inset-0 pointer-events-none"
+                  width="100%"
+                  height="100%"
+                >
+                  <line
+                    x1="10%" y1="85%"
+                    x2="90%" y2="15%"
+                    stroke="#ef4444"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    opacity="0.8"
+                  />
+                </svg>
+              </motion.span>
+            )
+          })}
         </AnimatePresence>
         {code.length === 0 && (
           <span className="text-muted-foreground/40">...</span>

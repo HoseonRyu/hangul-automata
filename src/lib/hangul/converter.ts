@@ -41,15 +41,8 @@ export class HangulConverter {
         currentHangul = ''
       }
 
-      // Build processed syllable code for display
-      let processedCode = ''
-      for (const c of codeUpToNow) {
-        if (c === 'd') {
-          processedCode = processedCode.slice(0, -1)
-        } else {
-          processedCode += c
-        }
-      }
+      // Build syllable code for display — keep d visible for dokkaebi visualization
+      const processedCode = codeUpToNow
 
       trace.push({
         ...step,
