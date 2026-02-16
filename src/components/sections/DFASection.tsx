@@ -32,100 +32,62 @@ export function DFASection() {
 
   return (
     <Section id="dfa">
-      <h2 className="text-4xl md:text-5xl font-bold mb-5">{t('title')}</h2>
-      <p className="text-lg md:text-xl text-muted-foreground mb-8">{t('description')}</p>
+      <h2 className="text-4xl md:text-5xl font-bold mb-3">{t('title')}</h2>
+      <p className="text-lg md:text-xl text-muted-foreground mb-5">{t('description')}</p>
 
-      {/* Theory + Example 5-tuple side by side */}
-      <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="p-5 rounded-lg bg-muted/30 border border-border/50">
-          <p className="text-base md:text-lg font-medium mb-3">{t('theory')}</p>
-          <ul className="text-base text-muted-foreground space-y-1.5 font-mono">
-            <li>{t('theoryQ')}</li>
-            <li>{t('theorySigma')}</li>
-            <li>{t('theoryDelta')}</li>
-            <li>{t('theoryQ0')}</li>
-            <li>{t('theoryF')}</li>
-          </ul>
-        </div>
+      {/* Theory + Example — single card, 3 columns */}
+      <div className="mb-5 p-6 lg:p-8 rounded-lg bg-muted/30 border border-border/50">
+        <p className="text-lg font-medium mb-5">{t('theory')}</p>
+        <div className="flex justify-around">
+          {/* Formal definition */}
+          <div className="text-base text-muted-foreground font-mono space-y-2.5">
+            <div>{t('theoryQ')}</div>
+            <div>{t('theorySigma')}</div>
+            <div>{t('theoryDelta')}</div>
+            <div>{t('theoryQ0')}</div>
+            <div>{t('theoryF')}</div>
+          </div>
 
-        <div className="p-5 rounded-lg bg-blue-500/5 border border-blue-500/20">
-          <p className="text-base md:text-lg font-medium mb-3 text-blue-400">{t('exampleConfig')}</p>
-          <ul className="text-base space-y-1.5 font-mono">
-            <li>
-              <span className="text-muted-foreground">Q = </span>
-              {'{ '}
-              <span className="text-blue-400">q0</span>
-              {', '}
-              <span className="text-blue-400">q1</span>
-              {', '}
-              <span className="text-blue-400">q2</span>
-              {' }'}
-            </li>
-            <li>
-              <span className="text-muted-foreground">Σ = </span>
-              {'{ '}
-              <span className="text-foreground">0</span>
-              {', '}
-              <span className="text-foreground">1</span>
-              {' }'}
-            </li>
-            <li>
-              <span className="text-muted-foreground">q₀ = </span>
-              <span className="text-blue-400">q0</span>
-            </li>
-            <li>
-              <span className="text-muted-foreground">F = </span>
-              {'{ '}
-              <span className="text-green-400">q1</span>
-              {', '}
-              <span className="text-green-400">q2</span>
-              {' }'}
-            </li>
-          </ul>
-          <div className="mt-3 pt-3 border-t border-blue-500/10">
-            <p className="text-sm text-muted-foreground mb-2">{t('exampleDelta')}</p>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-base font-mono">
-              <span>
-                <span className="text-muted-foreground">δ(</span>
-                q0, 0
-                <span className="text-muted-foreground">) = </span>
-                q1
-              </span>
-              <span>
-                <span className="text-muted-foreground">δ(</span>
-                q1, 0
-                <span className="text-muted-foreground">) = </span>
-                q1
-              </span>
-              <span>
-                <span className="text-muted-foreground">δ(</span>
-                q1, 1
-                <span className="text-muted-foreground">) = </span>
-                q2
-              </span>
-              <span>
-                <span className="text-muted-foreground">δ(</span>
-                q2, 0
-                <span className="text-muted-foreground">) = </span>
-                q0
-              </span>
+          {/* Tuple values */}
+          <div className="border-l border-border/30 pl-8">
+            <p className="text-sm text-blue-400 mb-3">{t('exampleConfig')}</p>
+            <div className="text-base font-mono space-y-2.5">
+              <div><span className="text-muted-foreground">Q = </span>{'{ '}<span className="text-blue-400">q0</span>{', '}<span className="text-blue-400">q1</span>{', '}<span className="text-blue-400">q2</span>{' }'}</div>
+              <div><span className="text-muted-foreground">Σ = </span>{'{ '}<span className="text-foreground">0</span>{', '}<span className="text-foreground">1</span>{' }'}</div>
+              <div><span className="text-muted-foreground">q₀ = </span><span className="text-blue-400">q0</span></div>
+              <div><span className="text-muted-foreground">F = </span>{'{ '}<span className="text-green-400">q1</span>{', '}<span className="text-green-400">q2</span>{' }'}</div>
+            </div>
+          </div>
+
+          {/* Delta */}
+          <div className="border-l border-border/30 pl-8">
+            <p className="text-sm text-muted-foreground mb-3">{t('exampleDelta')}</p>
+            <div className="text-base font-mono space-y-1.5">
+              <div><span className="text-muted-foreground">δ(</span>q0, 0<span className="text-muted-foreground">) = </span>q1</div>
+              <div><span className="text-muted-foreground">δ(</span>q0, 1<span className="text-muted-foreground">) = </span>q2</div>
+              <div><span className="text-muted-foreground">δ(</span>q1, 0<span className="text-muted-foreground">) = </span>q1</div>
+              <div><span className="text-muted-foreground">δ(</span>q1, 1<span className="text-muted-foreground">) = </span>q2</div>
+              <div><span className="text-muted-foreground">δ(</span>q2, 0<span className="text-muted-foreground">) = </span>q0</div>
+              <div><span className="text-muted-foreground">δ(</span>q2, 1<span className="text-muted-foreground">) = </span>q1</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Interactive demo */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-        <div className="lg:col-span-3">
-          <AutomataGraph
-            initialNodes={dfaNodes}
-            initialEdges={dfaEdges}
-            activeState={activeState}
-            activeEdgeId={activeEdge}
-          />
-        </div>
+      {/* Interactive demo — graph 2:1 controls */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <AutomataGraph
+          className="lg:col-span-2"
+          initialNodes={dfaNodes}
+          initialEdges={dfaEdges}
+          activeState={activeState}
+          activeEdgeId={activeEdge}
+        />
 
-        <div className="lg:col-span-2 flex flex-col gap-4">
+        <div
+          className="flex flex-col gap-3 h-[360px] overflow-y-auto"
+          style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,255,255,0.3) transparent' }}
+        >
           <InputField
             value={input}
             onChange={(v) => { setInput(v); playback.reset() }}

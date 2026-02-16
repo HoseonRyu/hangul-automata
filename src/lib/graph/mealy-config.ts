@@ -4,19 +4,19 @@ export const mealyNodes: Node[] = [
   {
     id: 'q0',
     type: 'stateNode',
-    position: { x: 100, y: 200 },
+    position: { x: 100, y: 130 },
     data: { label: 'q0', isStart: true, isFinal: false },
   },
   {
     id: 'q1',
     type: 'stateNode',
-    position: { x: 350, y: 200 },
+    position: { x: 380, y: 30 },
     data: { label: 'q1', isStart: false, isFinal: false },
   },
   {
     id: 'q2',
     type: 'stateNode',
-    position: { x: 600, y: 200 },
+    position: { x: 380, y: 230 },
     data: { label: 'q2', isStart: false, isFinal: false },
   },
 ]

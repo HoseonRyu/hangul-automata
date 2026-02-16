@@ -126,6 +126,7 @@ export function MealySection() {
             initialEdges={mealyEdges}
             activeState={activeState}
             activeEdgeId={activeEdge}
+            className="!h-[300px]"
           />
         </div>
 

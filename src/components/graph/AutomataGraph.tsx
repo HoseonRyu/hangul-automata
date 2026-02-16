@@ -59,7 +59,7 @@ export function AutomataGraph({
   )
 
   return (
-    <div className={`w-full h-[400px] rounded-lg border border-border bg-background/50 ${className}`}>
+    <div className={`w-full h-[360px] rounded-lg border border-border bg-background/50 ${className}`}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
