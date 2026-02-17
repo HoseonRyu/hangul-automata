@@ -9,6 +9,39 @@ import { HangulConverter } from '@/lib/hangul/converter'
 const converter = new HangulConverter()
 const demoTrace = converter.traceConvert('rkfk')
 
+const codeColors: Record<string, string> = {
+  '0': 'text-green-400 bg-green-500/15',
+  '1': 'text-blue-400 bg-blue-500/15',
+  '2': 'text-red-400 bg-red-500/15',
+  '.': 'text-muted-foreground',
+  'd': 'text-amber-400 bg-amber-500/15',
+}
+
+type Segment =
+  | { type: 'normal'; char: string; index: number }
+  | { type: 'cancelled'; chars: { char: string; index: number }[] }
+
+function buildSegments(code: string): Segment[] {
+  const segments: Segment[] = []
+  let i = 0
+  while (i < code.length) {
+    if (i + 1 < code.length && code[i + 1] === 'd') {
+      segments.push({
+        type: 'cancelled',
+        chars: [
+          { char: code[i], index: i },
+          { char: 'd', index: i + 1 },
+        ],
+      })
+      i += 2
+    } else {
+      segments.push({ type: 'normal', char: code[i], index: i })
+      i++
+    }
+  }
+  return segments
+}
+
 const WALKTHROUGH_DATA = [
   {
     key: 'r', jamo: 'ㄱ', role: '초성', code: '0', state: 'S → V', dokkaebi: false,
@@ -52,7 +85,7 @@ export function DokkaebiSection() {
 
       {/* Walkthrough */}
       <h3 className="text-2xl font-bold mb-6">{t('walkthrough')}</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
         {WALKTHROUGH_DATA.map((step, i) => (
           <motion.div
             key={i}
@@ -94,24 +127,56 @@ export function DokkaebiSection() {
               <span className="text-muted-foreground">{step.state}</span>
               <span className="text-foreground/40">|</span>
               <span className="flex gap-0.5">
-                {Array.from(step.code).map((c, ci) => (
-                  <span
-                    key={ci}
-                    className={`px-1 rounded ${
-                      c === '0'
-                        ? 'text-green-400 bg-green-500/15'
-                        : c === '1'
-                        ? 'text-blue-400 bg-blue-500/15'
-                        : c === '2'
-                        ? 'text-red-400 bg-red-500/15'
-                        : c === 'd'
-                        ? 'text-amber-400 bg-amber-500/15'
-                        : 'text-muted-foreground'
-                    }`}
-                  >
-                    {c}
-                  </span>
-                ))}
+                {buildSegments(step.code).map((seg) => {
+                  if (seg.type === 'normal') {
+                    return (
+                      <span
+                        key={seg.index}
+                        className={`px-1 rounded ${codeColors[seg.char] || 'text-foreground'}`}
+                      >
+                        {seg.char}
+                      </span>
+                    )
+                  }
+                  const first = seg.chars[0]
+                  const second = seg.chars[1]
+                  return (
+                    <span
+                      key={`cancelled-${first.index}`}
+                      className="relative inline-flex gap-0.5"
+                    >
+                      <motion.span
+                        animate={{ opacity: [1, 1, 0.35, 0.35] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                        className={`px-1 rounded ${codeColors[first.char] || 'text-foreground'}`}
+                      >
+                        {first.char}
+                      </motion.span>
+                      <motion.span
+                        animate={{ opacity: [1, 1, 0.35, 0.35] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                        className={`px-1 rounded ${codeColors[second.char] || 'text-foreground'}`}
+                      >
+                        {second.char}
+                      </motion.span>
+                      <motion.svg
+                        animate={{ opacity: [0, 0, 0.8, 0.8] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                        className="absolute inset-0 pointer-events-none"
+                        width="100%"
+                        height="100%"
+                      >
+                        <line
+                          x1="10%" y1="85%"
+                          x2="90%" y2="15%"
+                          stroke="#ef4444"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                      </motion.svg>
+                    </span>
+                  )
+                })}
               </span>
             </div>
 
