@@ -55,7 +55,26 @@
     "stateTitle": "상태 다이어그램",
     "regexTitle": "음절 구조 패턴",
     "legendTitle": "입력 카테고리",
-    "examples": "예제"
+    "examples": "예제",
+    "statesTitle": "상태 S — 10개",
+    "stateS": "시작 (대기)",
+    "stateV": "초성 입력 완료",
+    "stateO": "중성 ㅗ (복합모음 대기)",
+    "stateU": "중성 ㅜ (복합모음 대기)",
+    "stateA": "중성 단모음 (ㅏ,ㅓ,ㅣ,ㅡ)",
+    "stateI": "중성 완료 (ㅡ류/복합모음)",
+    "stateK": "종성 ㄱ,ㅂ (복합종성 대기)",
+    "stateN": "종성 ㄴ (복합종성 대기)",
+    "stateR": "종성 ㄹ (복합종성 대기)",
+    "stateL": "종성 완료 (기타/복합)",
+    "inputTitle": "입력 Σ — 33개 영문 키",
+    "outputTitle": "출력 Λ — 음절 코드",
+    "outputDesc0": "초성 코드",
+    "outputDesc1": "중성 코드",
+    "outputDesc2": "종성 코드",
+    "outputDescDot": "음절 구분자",
+    "outputDescD": "도깨비불 (종성 삭제)",
+    "exampleTG": "전이/출력 함수 (26개 전이 그룹)"
   },
   "dokkaebi": {
     "title": "도깨비불 현상",
@@ -76,7 +95,8 @@
     "result": "결과",
     "hangul": "한글",
     "modeExplain": "설명",
-    "modeInteractive": "체험"
+    "modeInteractive": "체험",
+    "modeRealtime": "실시간 변환기"
   },
   "footer": {
     "description": "오토마타 이론을 활용한 한글 입력 원리 시각화",

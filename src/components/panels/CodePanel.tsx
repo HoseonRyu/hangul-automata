@@ -2,11 +2,18 @@
 
 import { motion, AnimatePresence } from 'motion/react'
 
+interface JamoMappingItem {
+  inputKey: string
+  jamo: string
+  codeChars: string
+}
+
 interface CodePanelProps {
   code: string
   currentStep: number
   title?: string
   className?: string
+  jamoMapping?: JamoMappingItem[]
 }
 
 const codeColors: Record<string, string> = {
@@ -43,7 +50,7 @@ function buildSegments(code: string): Segment[] {
   return segments
 }
 
-export function CodePanel({ code, currentStep, title, className = '' }: CodePanelProps) {
+export function CodePanel({ code, currentStep, title, className = '', jamoMapping }: CodePanelProps) {
   const segments = buildSegments(code)
 
   return (
@@ -127,6 +134,22 @@ export function CodePanel({ code, currentStep, title, className = '' }: CodePane
           <span className="w-2 h-2 rounded-full bg-amber-400" /> d: 도깨비불
         </span>
       </div>
+      {jamoMapping && jamoMapping.length > 0 && (
+        <div className="mt-2 pt-2 border-t border-border/30 flex flex-wrap gap-2 text-sm font-mono">
+          {jamoMapping.map((item, i) => (
+            <span key={i} className="flex items-center gap-1">
+              <span className="text-blue-400">{item.inputKey}</span>
+              <span className="text-muted-foreground">({item.jamo})</span>
+              <span className="text-muted-foreground/50">/</span>
+              <span className="flex gap-0.5">
+                {Array.from(item.codeChars).map((c, ci) => (
+                  <span key={ci} className={`px-0.5 rounded ${codeColors[c] || ''}`}>{c}</span>
+                ))}
+              </span>
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

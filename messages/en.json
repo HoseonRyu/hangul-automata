@@ -55,7 +55,26 @@
     "stateTitle": "State Diagram",
     "regexTitle": "Syllable Structure Pattern",
     "legendTitle": "Input Categories",
-    "examples": "Examples"
+    "examples": "Examples",
+    "statesTitle": "States S — 10",
+    "stateS": "Start (idle)",
+    "stateV": "Initial consonant entered",
+    "stateO": "Medial ㅗ (compound vowel pending)",
+    "stateU": "Medial ㅜ (compound vowel pending)",
+    "stateA": "Medial simple vowel (ㅏ,ㅓ,ㅣ,ㅡ)",
+    "stateI": "Medial complete (ㅡ-type/compound)",
+    "stateK": "Final ㄱ,ㅂ (compound final pending)",
+    "stateN": "Final ㄴ (compound final pending)",
+    "stateR": "Final ㄹ (compound final pending)",
+    "stateL": "Final complete (other/compound)",
+    "inputTitle": "Input Σ — 33 English Keys",
+    "outputTitle": "Output Λ — Syllable Codes",
+    "outputDesc0": "Initial consonant code",
+    "outputDesc1": "Medial vowel code",
+    "outputDesc2": "Final consonant code",
+    "outputDescDot": "Syllable separator",
+    "outputDescD": "Dokkaebi (delete final)",
+    "exampleTG": "Transition / Output functions (26 groups)"
   },
   "dokkaebi": {
     "title": "Dokkaebi Phenomenon",
@@ -76,7 +95,8 @@
     "result": "Result",
     "hangul": "Hangul",
     "modeExplain": "Explain",
-    "modeInteractive": "Interactive"
+    "modeInteractive": "Interactive",
+    "modeRealtime": "Real-time"
   },
   "footer": {
     "description": "Visualizing Hangul input principles through automata theory",
