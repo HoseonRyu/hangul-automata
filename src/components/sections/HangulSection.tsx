@@ -33,8 +33,8 @@ const INPUT_CATEGORIES = [
   { symbol: 'c', keys: 'r,s,e,f,a,q,t,d,w,c,z,x,v,g', color: 'text-emerald-300' },
   { symbol: 'D', keys: 'R,E,Q,T,W', color: 'text-emerald-300' },
   { symbol: 'h,n', keys: 'ㅗ, ㅜ (복합모음 시작)', color: 'text-blue-400' },
-  { symbol: 'k,i,j,u', keys: 'ㅏ,ㅓ,ㅣ,ㅡ (단모음)', color: 'text-blue-300' },
-  { symbol: 'y,b,l,...', keys: 'ㅑ,ㅠ,ㅣ,ㅐ,... (종결모음)', color: 'text-blue-300' },
+  { symbol: 'k,o,j,p', keys: 'ㅏ,ㅐ,ㅓ,ㅔ (복합모음 구성 가능)', color: 'text-blue-300' },
+  { symbol: 'i,u,...', keys: 'ㅑ,ㅡ,ㅠ,ㅣ,... (단순/종결모음)', color: 'text-blue-300' },
 ] as const
 
 const OUTPUT_CODES = [

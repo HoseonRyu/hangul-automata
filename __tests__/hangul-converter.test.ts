@@ -66,6 +66,15 @@ describe('HangulConverter', () => {
     expect(converter.convert('tjl')).toBe('서ㅣ')
   })
 
+  it('should convert compound vowels ㅙ(ㅗ+ㅐ) and ㅞ(ㅜ+ㅔ)', () => {
+    expect(converter.convert('dho')).toBe('왜')       // ㅇ + ㅗ + ㅐ = 왜 (ㅙ)
+    expect(converter.convert('dnp')).toBe('웨')       // ㅇ + ㅜ + ㅔ = 웨 (ㅞ)
+  })
+
+  it('should convert "dhormfjsmsi" to "왜그러느냐"', () => {
+    expect(converter.convert('dhormfjsmsi')).toBe('왜그러느냐')
+  })
+
   it('should convert "rkfk" to "갈라" (dokkaebi case)', () => {
     // r(ㄱ) + k(ㅏ) + f(ㄹ) -> 갈, then f becomes final
     // but next is k(ㅏ) -> dokkaebi: 갈 loses ㄹ -> 가, ㄹ becomes 라

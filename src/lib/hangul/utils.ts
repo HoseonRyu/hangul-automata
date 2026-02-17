@@ -59,8 +59,8 @@ export function hangulChar(query: string, code: string): string {
       lChr += query[i]
     }
   }
-  // 단일 키 모음을 MIDDLE 배열에서 찾을 수 있도록 정규화
-  mChr = VOWEL_ALIASES[mChr] ?? mChr
+  // 모음 키를 MIDDLE 배열에서 찾을 수 있도록 정규화 (개별 문자 단위 alias 확장)
+  mChr = Array.from(mChr).map(c => VOWEL_ALIASES[c] ?? c).join('')
   const f = FIRST.indexOf(fChr)
   const m = MIDDLE.indexOf(mChr)
   const l = LAST.indexOf(lChr)

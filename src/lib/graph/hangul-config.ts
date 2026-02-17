@@ -152,19 +152,19 @@ export const hangulEdges: Edge[] = [
   },
   // O compound vowels
   {
-    id: 'O-k-I',
+    id: 'O-ko-I',
     source: 'O',
     target: 'I',
     type: 'transitionEdge',
-    data: { label: 'k / 1', symbols: ['k'] },
+    data: { label: 'k,o / 1', symbols: ['k', 'o'] },
   },
   // U compound vowels
   {
-    id: 'U-j-I',
+    id: 'U-jp-I',
     source: 'U',
     target: 'I',
     type: 'transitionEdge',
-    data: { label: 'j / 1', symbols: ['j'] },
+    data: { label: 'j,p / 1', symbols: ['j', 'p'] },
   },
   // O,U -> I (ㅗㅣ, ㅜㅣ)
   {

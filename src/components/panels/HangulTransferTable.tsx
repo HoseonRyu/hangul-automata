@@ -21,8 +21,8 @@ const TRANSFER_DISPLAY: TransferRow[] = [
   { from: 'V', symbols: 'k,i,j,u', to: 'A', output: '1', nodes: ['V', 'A'], edges: ['V-kiju-A'] },
   { from: 'V', symbols: 'y,b,l,o,O,p,P,m', to: 'I', output: '1', nodes: ['V', 'I'], edges: ['V-ybl-I'] },
   // 복합모음
-  { from: 'O', symbols: 'k', to: 'I', output: '1', nodes: ['O', 'I'], edges: ['O-k-I'] },
-  { from: 'U', symbols: 'j', to: 'I', output: '1', nodes: ['U', 'I'], edges: ['U-j-I'] },
+  { from: 'O', symbols: 'k,o', to: 'I', output: '1', nodes: ['O', 'I'], edges: ['O-ko-I'] },
+  { from: 'U', symbols: 'j,p', to: 'I', output: '1', nodes: ['U', 'I'], edges: ['U-jp-I'] },
   { from: '{O,U}', symbols: 'l', to: 'I', output: '1', nodes: ['O', 'U', 'I'], edges: ['OU-l-I'] },
   { from: 'A', symbols: 'l', to: 'I', output: '.1', nodes: ['A', 'I'], edges: ['A-l-I'] },
   { from: 'I', symbols: 'l', to: 'I', output: '1', nodes: ['I'], edges: ['I-l-I'] },
