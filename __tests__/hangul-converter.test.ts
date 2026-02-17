@@ -8,18 +8,16 @@ describe('HangulConverter', () => {
     expect(converter.convert('dkssud')).toBe('안녕')
   })
 
-  it('should convert "tjltkd" to "세상"', () => {
-    expect(converter.convert('tjltkd')).toBe('세상')
+  it('should convert "tptkd" to "세상"', () => {
+    expect(converter.convert('tptkd')).toBe('세상')
   })
 
   it('should convert "gksrmf" to "한글"', () => {
     expect(converter.convert('gksrmf')).toBe('한글')
   })
 
-  it('should convert "dkssudhkTwjdekqhrl" to "안녕하세요반갑습니다"', () => {
-    // This tests a longer sentence
-    const result = converter.convert('dkssud')
-    expect(result).toBe('안녕')
+  it('should convert "dkssudgktpdy" to "안녕하세요"', () => {
+    expect(converter.convert('dkssudgktpdy')).toBe('안녕하세요')
   })
 
   it('should handle dokkaebi phenomenon in trace', () => {
@@ -54,6 +52,18 @@ describe('HangulConverter', () => {
   it('should handle dokkaebi with new vowels (o,O,p,P)', () => {
     // r(ㄱ) + k(ㅏ) + f(ㄹ) + p(ㅔ) → 갈 → 가 + 레 (dokkaebi)
     expect(converter.convert('rkfp')).toBe('가레')
+  })
+
+  it('should convert "dml" to "의" (ㅡ+ㅣ=ㅢ)', () => {
+    expect(converter.convert('dml')).toBe('의')
+  })
+
+  it('should convert "rhkls" to "괜" (ㅗ+ㅏ+ㅣ=ㅙ + 종성)', () => {
+    expect(converter.convert('rhkls')).toBe('괜')
+  })
+
+  it('should split A+l into separate syllables ("tjl" → "서ㅣ")', () => {
+    expect(converter.convert('tjl')).toBe('서ㅣ')
   })
 
   it('should convert "rkfk" to "갈라" (dokkaebi case)', () => {

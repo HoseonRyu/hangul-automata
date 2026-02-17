@@ -96,9 +96,9 @@ export function HangulSection() {
             validSymbols={SYMBOLS_IN}
             examples={[
               { label: 'dkssud → 안녕', value: 'dkssud' },
-              { label: 'tjltkd → 세상', value: 'tjltkd' },
+              { label: 'tptkd → 세상', value: 'tptkd' },
               { label: 'gksrmf → 한글', value: 'gksrmf' },
-              { label: 'dkssudgkTwjd → 안녕하세요', value: 'dkssudgkTwjd' },
+              { label: 'dkssudgktpdy → 안녕하세요', value: 'dkssudgktpdy' },
             ]}
           />
 

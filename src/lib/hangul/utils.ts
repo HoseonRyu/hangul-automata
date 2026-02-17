@@ -1,11 +1,26 @@
 import { FIRST, MIDDLE, LAST } from './constants'
 
 // 단일 키로 입력되는 복합 모음 → MIDDLE 배열 키 매핑
-const VOWEL_ALIASES: Record<string, string> = {
+export const VOWEL_ALIASES: Record<string, string> = {
   'o': 'kl',  // ㅐ
   'O': 'il',  // ㅒ
   'p': 'jl',  // ㅔ
   'P': 'ul',  // ㅖ
+}
+
+// 중성 인덱스 → 호환용 자모 (U+314F~U+3163)
+const JUNGSEONG_TO_JAMO = [
+  0x314F, 0x3150, 0x3151, 0x3152, 0x3153, 0x3154, 0x3155, 0x3156,
+  0x3157, 0x3158, 0x3159, 0x315A, 0x315B, 0x315C, 0x315D, 0x315E,
+  0x315F, 0x3160, 0x3161, 0x3162, 0x3163,
+]
+
+/** 모음 키 → 호환용 자모 문자 (예: 'k' → 'ㅏ', 'l' → 'ㅣ') */
+export function vowelToJamo(keys: string): string {
+  const normalized = VOWEL_ALIASES[keys] ?? keys
+  const idx = MIDDLE.indexOf(normalized)
+  if (idx === -1) return keys
+  return String.fromCharCode(JUNGSEONG_TO_JAMO[idx])
 }
 
 // 초성 인덱스 → 호환용 자모(U+3131~U+314E) 매핑
@@ -83,6 +98,9 @@ export function convertToHangul(query: string, syllableCode: string): string {
     const char = hangulChar(segmentsQuery[i], segmentsCode[i])
     if (char) {
       output += char
+    } else if (!segmentsCode[i].includes('0') && segmentsCode[i].includes('1')) {
+      // 초성 없이 모음만 있는 세그먼트 → 모음 자모로 표시
+      output += vowelToJamo(segmentsQuery[i])
     } else if (!segmentsCode[i].includes('1')) {
       // 모음 없이 자음만 있는 세그먼트 → 자모로 표시
       output += consonantToJamo(segmentsQuery[i])

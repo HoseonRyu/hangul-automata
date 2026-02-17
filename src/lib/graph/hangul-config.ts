@@ -137,39 +137,55 @@ export const hangulEdges: Edge[] = [
     data: { label: 'n / 1', categoryLabel: 'o_n', symbols: ['n'] },
   },
   {
-    id: 'V-kijum-A',
+    id: 'V-kiju-A',
     source: 'V',
     target: 'A',
     type: 'transitionEdge',
-    data: { label: 'k,i,j,u,m / 1', categoryLabel: 'a', symbols: ['k', 'i', 'j', 'u', 'm'] },
+    data: { label: 'k,i,j,u / 1', categoryLabel: 'a', symbols: ['k', 'i', 'j', 'u'] },
   },
   {
     id: 'V-ybl-I',
     source: 'V',
     target: 'I',
     type: 'transitionEdge',
-    data: { label: 'y,b,l,o,O,p,P / 1', categoryLabel: 'v_t', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P'] },
+    data: { label: 'y,b,l,o,O,p,P,m / 1', categoryLabel: 'v_t', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P', 'm'] },
   },
   // O compound vowels
   {
-    id: 'O-k-A',
+    id: 'O-k-I',
     source: 'O',
-    target: 'A',
+    target: 'I',
     type: 'transitionEdge',
     data: { label: 'k / 1', symbols: ['k'] },
   },
   // U compound vowels
   {
-    id: 'U-j-A',
+    id: 'U-j-I',
     source: 'U',
-    target: 'A',
+    target: 'I',
     type: 'transitionEdge',
     data: { label: 'j / 1', symbols: ['j'] },
   },
-  // O,U,A -> I (ㅢ류)
+  // O,U -> I (ㅗㅣ, ㅜㅣ)
   {
-    id: 'OUA-l-I',
+    id: 'OU-l-I',
     source: 'O',
+    target: 'I',
+    type: 'transitionEdge',
+    data: { label: 'l / 1', symbols: ['l'] },
+  },
+  // A -> I (새 음절로 분리)
+  {
+    id: 'A-l-I',
+    source: 'A',
+    target: 'I',
+    type: 'transitionEdge',
+    data: { label: 'l / .1', symbols: ['l'] },
+  },
+  // I -> I self-loop (ㅢ, ㅙ, ㅞ)
+  {
+    id: 'I-l-I',
+    source: 'I',
     target: 'I',
     type: 'transitionEdge',
     data: { label: 'l / 1', symbols: ['l'] },
@@ -216,7 +232,7 @@ export const hangulEdges: Edge[] = [
     source: 'K',
     target: 'A',
     type: 'transitionEdge',
-    data: { label: 'k,i,j,u,m / d.01', categoryLabel: 'V', symbols: ['k', 'i', 'j', 'u', 'm'], isDokkaebi: true },
+    data: { label: 'k,i,j,u / d.01', categoryLabel: 'V', symbols: ['k', 'i', 'j', 'u'], isDokkaebi: true },
   },
   // 종성 -> I (dokkaebi with terminal vowels)
   {
@@ -224,7 +240,7 @@ export const hangulEdges: Edge[] = [
     source: 'K',
     target: 'I',
     type: 'transitionEdge',
-    data: { label: 'y,b,l,o,O,p,P / d.01', categoryLabel: 'V', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P'], isDokkaebi: true },
+    data: { label: 'y,b,l,o,O,p,P,m / d.01', categoryLabel: 'V', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P', 'm'], isDokkaebi: true },
   },
   // 종성 -> new syllable (consonant: .0)
   {
