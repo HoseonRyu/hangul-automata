@@ -26,6 +26,7 @@ const STATE_GROUPS = [
   { group: 'initial' as const, color: 'text-emerald-400', states: ['V'] },
   { group: 'medial' as const, color: 'text-blue-400', states: ['O', 'U', 'A', 'I'] },
   { group: 'final' as const, color: 'text-amber-400', states: ['K', 'N', 'R', 'L'] },
+  { group: 'bare' as const, color: 'text-violet-400', states: ['B'] },
 ] as const
 
 const INPUT_CATEGORIES = [

@@ -13,19 +13,25 @@ interface TransferRow {
 }
 
 const TRANSFER_DISPLAY: TransferRow[] = [
-  // 초성 입력
+  // S: 시작 상태
   { from: 'S', symbols: 'C', to: 'V', output: '0', nodes: ['S', 'V'], edges: ['S-C-V'] },
-  // 중성 분기
+  { from: 'S', symbols: 'V', to: 'B', output: '1', nodes: ['S', 'B'], edges: ['S-V-B'] },
+  // V: 초성 입력 완료
   { from: 'V', symbols: 'h', to: 'O', output: '1', nodes: ['V', 'O'], edges: ['V-h-O'] },
   { from: 'V', symbols: 'n', to: 'U', output: '1', nodes: ['V', 'U'], edges: ['V-n-U'] },
   { from: 'V', symbols: 'k,i,j,u', to: 'A', output: '1', nodes: ['V', 'A'], edges: ['V-kiju-A'] },
   { from: 'V', symbols: 'y,b,l,o,O,p,P,m', to: 'I', output: '1', nodes: ['V', 'I'], edges: ['V-ybl-I'] },
+  { from: 'V', symbols: 'C', to: 'V', output: '.0', nodes: ['V'], edges: ['V-C-V'] },
   // 복합모음
   { from: 'O', symbols: 'k,o', to: 'I', output: '1', nodes: ['O', 'I'], edges: ['O-ko-I'] },
   { from: 'U', symbols: 'j,p', to: 'I', output: '1', nodes: ['U', 'I'], edges: ['U-jp-I'] },
   { from: '{O,U}', symbols: 'l', to: 'I', output: '1', nodes: ['O', 'U', 'I'], edges: ['OU-l-I'] },
-  { from: 'A', symbols: 'l', to: 'I', output: '.1', nodes: ['A', 'I'], edges: ['A-l-I'] },
   { from: 'I', symbols: 'l', to: 'I', output: '1', nodes: ['I'], edges: ['I-l-I'] },
+  // 비복합모음 → B
+  { from: 'O', symbols: 'V\\{k,o,l}', to: 'B', output: '.1', nodes: ['O', 'B'], edges: ['O-V-B'] },
+  { from: 'U', symbols: 'V\\{j,p,l}', to: 'B', output: '.1', nodes: ['U', 'B'], edges: ['U-V-B'] },
+  { from: 'A', symbols: 'V', to: 'B', output: '.1', nodes: ['A', 'B'], edges: ['A-V-B'] },
+  { from: 'I', symbols: 'V\\l', to: 'B', output: '.1', nodes: ['I', 'B'], edges: ['I-V-B'] },
   // 종성 입력
   { from: '{O,U,A,I}', symbols: 'r,q', to: 'K', output: '2', nodes: ['O', 'U', 'A', 'I', 'K'], edges: ['OUAI-rq-K'] },
   { from: '{O,U,A,I}', symbols: 's', to: 'N', output: '2', nodes: ['O', 'U', 'A', 'I', 'N'], edges: ['OUAI-s-N'] },
@@ -45,6 +51,9 @@ const TRANSFER_DISPLAY: TransferRow[] = [
   { from: 'R', symbols: 'r,a,q,t,...', to: 'L', output: '2', nodes: ['R', 'L'], edges: ['R-comp-L'] },
   { from: 'R', symbols: 'C\\raqtxvg', to: 'V', output: '.0', nodes: ['R', 'V'], edges: ['R-C-V'] },
   { from: 'L', symbols: 'C', to: 'V', output: '.0', nodes: ['L', 'V'], edges: ['L-C-V'] },
+  // B: 단독 자모
+  { from: 'B', symbols: 'V', to: 'B', output: '.1', nodes: ['B'], edges: ['B-V-B'] },
+  { from: 'B', symbols: 'C', to: 'V', output: '.0', nodes: ['B', 'V'], edges: ['B-C-V'] },
 ]
 
 const outputColors: Record<string, string> = {

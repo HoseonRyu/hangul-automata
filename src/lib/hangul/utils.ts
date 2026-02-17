@@ -17,7 +17,7 @@ const JUNGSEONG_TO_JAMO = [
 
 /** 모음 키 → 호환용 자모 문자 (예: 'k' → 'ㅏ', 'l' → 'ㅣ') */
 export function vowelToJamo(keys: string): string {
-  const normalized = VOWEL_ALIASES[keys] ?? keys
+  const normalized = Array.from(keys).map(c => VOWEL_ALIASES[c] ?? c).join('')
   const idx = MIDDLE.indexOf(normalized)
   if (idx === -1) return keys
   return String.fromCharCode(JUNGSEONG_TO_JAMO[idx])

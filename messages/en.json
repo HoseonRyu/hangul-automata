@@ -48,7 +48,7 @@
   },
   "hangul": {
     "title": "Korean Converter — Mealy Machine in Practice",
-    "description": "A 10-state Mealy Machine converts English key inputs to Korean characters. The composition rules of initial, medial, and final consonants are modeled as state transitions.",
+    "description": "An 11-state Mealy Machine converts English key inputs to Korean characters. The composition rules of initial, medial, and final consonants are modeled as state transitions.",
     "inputPlaceholder": "Type English keys (e.g., dkssud)",
     "codeTitle": "Syllable Code",
     "hangulTitle": "Hangul Output",
@@ -56,7 +56,7 @@
     "regexTitle": "Syllable Structure Pattern",
     "legendTitle": "Input Categories",
     "examples": "Examples",
-    "statesTitle": "States S — 10",
+    "statesTitle": "States S — 11",
     "stateS": "Start (idle)",
     "stateV": "Initial consonant entered",
     "stateO": "Medial ㅗ (compound vowel pending)",
@@ -67,6 +67,7 @@
     "stateN": "Final ㄴ (compound final pending)",
     "stateR": "Final ㄹ (compound final pending)",
     "stateL": "Final complete (other/compound)",
+    "stateB": "Bare jamo (vowel without initial)",
     "inputTitle": "Input Σ — 33 English Keys",
     "outputTitle": "Output Λ — Syllable Codes",
     "outputDesc0": "Initial consonant code",
@@ -74,7 +75,7 @@
     "outputDesc2": "Final consonant code",
     "outputDescDot": "Syllable separator",
     "outputDescD": "Dokkaebi (delete final)",
-    "exampleTG": "Transition / Output functions (26 groups)"
+    "exampleTG": "Transition / Output functions (33 groups)"
   },
   "dokkaebi": {
     "title": "Dokkaebi Phenomenon",

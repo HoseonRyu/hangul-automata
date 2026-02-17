@@ -48,7 +48,7 @@
   },
   "hangul": {
     "title": "영한 변환기 — Mealy Machine의 실전 적용",
-    "description": "10개의 상태를 가진 Mealy Machine으로 영문 키 입력을 한글로 변환합니다. 초성·중성·종성의 조합 규칙을 오토마타의 상태 전이로 모델링합니다.",
+    "description": "11개의 상태를 가진 Mealy Machine으로 영문 키 입력을 한글로 변환합니다. 초성·중성·종성의 조합 규칙을 오토마타의 상태 전이로 모델링합니다.",
     "inputPlaceholder": "영문 키 입력 (예: dkssud)",
     "codeTitle": "음절 코드",
     "hangulTitle": "한글 출력",
@@ -56,7 +56,7 @@
     "regexTitle": "음절 구조 패턴",
     "legendTitle": "입력 카테고리",
     "examples": "예제",
-    "statesTitle": "상태 S — 10개",
+    "statesTitle": "상태 S — 11개",
     "stateS": "시작 (대기)",
     "stateV": "초성 입력 완료",
     "stateO": "중성 ㅗ (복합모음 대기)",
@@ -67,6 +67,7 @@
     "stateN": "종성 ㄴ (복합종성 대기)",
     "stateR": "종성 ㄹ (복합종성 대기)",
     "stateL": "종성 완료 (기타/복합)",
+    "stateB": "단독 자모 (초성 없는 모음)",
     "inputTitle": "입력 Σ — 33개 영문 키",
     "outputTitle": "출력 Λ — 음절 코드",
     "outputDesc0": "초성 코드",
@@ -74,7 +75,7 @@
     "outputDesc2": "종성 코드",
     "outputDescDot": "음절 구분자",
     "outputDescD": "도깨비불 (종성 삭제)",
-    "exampleTG": "전이/출력 함수 (26개 전이 그룹)"
+    "exampleTG": "전이/출력 함수 (33개 전이 그룹)"
   },
   "dokkaebi": {
     "title": "도깨비불 현상",

@@ -80,16 +80,15 @@ export class HangulConverter {
 
       if (segCode.length === 0) continue
 
-      // For the last segment, it might be incomplete (no vowel yet)
-      if (si === lenList.length - 1 && !segCode.includes('1')) {
-        // Only consonant so far — show Korean jamo
-        output += consonantToJamo(segQuery)
+      const char = hangulChar(segQuery, segCode)
+      if (char) {
+        output += char
       } else if (!segCode.includes('0') && segCode.includes('1')) {
         // 초성 없이 모음만 있는 세그먼트 → 모음 자모로 표시
         output += vowelToJamo(segQuery)
-      } else {
-        const char = hangulChar(segQuery, segCode)
-        output += char || segQuery
+      } else if (!segCode.includes('1')) {
+        // 모음 없이 자음만 있는 세그먼트 → 자모로 표시
+        output += consonantToJamo(segQuery)
       }
     }
 

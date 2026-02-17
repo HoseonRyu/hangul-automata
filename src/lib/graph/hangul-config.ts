@@ -1,8 +1,8 @@
 import type { Node, Edge } from '@xyflow/react'
 
-// 10-state hangul Mealy Machine graph configuration
+// 11-state hangul Mealy Machine graph configuration
 // States: S(Start), V(초성 입력 후), O(ㅗ), U(ㅜ), A(단모음), I(ㅡ/ㅢ류),
-//         K(종성 ㄱ/ㅂ), N(종성 ㄴ), R(종성 ㄹ), L(기타 종성)
+//         K(종성 ㄱ/ㅂ), N(종성 ㄴ), R(종성 ㄹ), L(기타 종성), B(단독 자모)
 
 const COL1 = 80
 const COL2 = 280
@@ -44,6 +44,13 @@ export const hangulGroupNodes: Node[] = [
     type: 'groupBackground',
     position: { x: COL4 - GROUP_PAD, y: ROW1 - GROUP_PAD },
     data: { label: '종성', width: NODE_SIZE + GROUP_PAD * 2, height: (ROW4 - ROW1) + NODE_SIZE + GROUP_PAD * 2, color: 'amber' },
+    zIndex: -1,
+  },
+  {
+    id: 'group-bare',
+    type: 'groupBackground',
+    position: { x: COL1 - GROUP_PAD, y: ROW4 - GROUP_PAD },
+    data: { label: '자모', width: NODE_SIZE + GROUP_PAD * 2, height: NODE_SIZE + GROUP_PAD * 2, color: 'violet' },
     zIndex: -1,
   },
 ]
@@ -109,6 +116,12 @@ export const hangulNodes: Node[] = [
     position: { x: COL4, y: ROW4 },
     data: { label: 'L', isStart: false, isFinal: false, description: '기타 종성' },
   },
+  {
+    id: 'B',
+    type: 'stateNode',
+    position: { x: COL1, y: ROW4 },
+    data: { label: 'B', isStart: false, isFinal: false, description: '단독 자모' },
+  },
 ]
 
 // Simplified edges: group transitions for readability
@@ -120,6 +133,14 @@ export const hangulEdges: Edge[] = [
     target: 'V',
     type: 'transitionEdge',
     data: { label: 'C / 0', categoryLabel: 'C', symbols: Array.from('rsefaqtdwczxvgREQTW') },
+  },
+  // S -> B (vowel input: bare vowel)
+  {
+    id: 'S-V-B',
+    source: 'S',
+    target: 'B',
+    type: 'transitionEdge',
+    data: { label: 'V / 1', categoryLabel: 'V', symbols: Array.from('kijuhynbmloOpP') },
   },
   // V -> vowel states
   {
@@ -150,6 +171,14 @@ export const hangulEdges: Edge[] = [
     type: 'transitionEdge',
     data: { label: 'y,b,l,o,O,p,P,m / 1', categoryLabel: 'v_t', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P', 'm'] },
   },
+  // V -> V (consonant: standalone initial, new initial)
+  {
+    id: 'V-C-V',
+    source: 'V',
+    target: 'V',
+    type: 'transitionEdge',
+    data: { label: 'C / .0', categoryLabel: 'C', symbols: Array.from('rsefaqtdwczxvgREQTW') },
+  },
   // O compound vowels
   {
     id: 'O-ko-I',
@@ -174,21 +203,42 @@ export const hangulEdges: Edge[] = [
     type: 'transitionEdge',
     data: { label: 'l / 1', symbols: ['l'] },
   },
-  // A -> I (새 음절로 분리)
-  {
-    id: 'A-l-I',
-    source: 'A',
-    target: 'I',
-    type: 'transitionEdge',
-    data: { label: 'l / .1', symbols: ['l'] },
-  },
-  // I -> I self-loop (ㅢ, ㅙ, ㅞ)
+  // I -> I self-loop (ㅢ, etc.)
   {
     id: 'I-l-I',
     source: 'I',
     target: 'I',
     type: 'transitionEdge',
     data: { label: 'l / 1', symbols: ['l'] },
+  },
+  // Non-compound vowels → B (new bare segment)
+  {
+    id: 'O-V-B',
+    source: 'O',
+    target: 'B',
+    type: 'transitionEdge',
+    data: { label: 'V\\{k,o,l} / .1', categoryLabel: 'V', symbols: Array.from('ijuhynbmOpP') },
+  },
+  {
+    id: 'U-V-B',
+    source: 'U',
+    target: 'B',
+    type: 'transitionEdge',
+    data: { label: 'V\\{j,p,l} / .1', categoryLabel: 'V', symbols: Array.from('kiuhynbmoOP') },
+  },
+  {
+    id: 'A-V-B',
+    source: 'A',
+    target: 'B',
+    type: 'transitionEdge',
+    data: { label: 'V / .1', categoryLabel: 'V', symbols: Array.from('kijuhynbmloOpP') },
+  },
+  {
+    id: 'I-V-B',
+    source: 'I',
+    target: 'B',
+    type: 'transitionEdge',
+    data: { label: 'V\\l / .1', categoryLabel: 'V', symbols: Array.from('kijuhynbmoOpP') },
   },
   // Vowel states -> 종성 states
   {
@@ -303,5 +353,21 @@ export const hangulEdges: Edge[] = [
     target: 'V',
     type: 'transitionEdge',
     data: { label: 'E,Q,W / .0', categoryLabel: 'D', symbols: ['E', 'Q', 'W'] },
+  },
+  // B -> B (vowel: new bare vowel segment)
+  {
+    id: 'B-V-B',
+    source: 'B',
+    target: 'B',
+    type: 'transitionEdge',
+    data: { label: 'V / .1', categoryLabel: 'V', symbols: Array.from('kijuhynbmloOpP') },
+  },
+  // B -> V (consonant: start new syllable)
+  {
+    id: 'B-C-V',
+    source: 'B',
+    target: 'V',
+    type: 'transitionEdge',
+    data: { label: 'C / .0', categoryLabel: 'C', symbols: Array.from('rsefaqtdwczxvgREQTW') },
   },
 ]

@@ -75,6 +75,49 @@ describe('HangulConverter', () => {
     expect(converter.convert('dhormfjsmsi')).toBe('왜그러느냐')
   })
 
+  // === 완전 전이 함수 테스트 (모든 상태에서 모든 입력 처리) ===
+
+  it('should handle bare vowel input from start: "k" → "ㅏ"', () => {
+    expect(converter.convert('k')).toBe('ㅏ')
+    expect(converter.convert('h')).toBe('ㅗ')
+    expect(converter.convert('l')).toBe('ㅣ')
+  })
+
+  it('should handle vowel after vowel: "rkk" → "가ㅏ"', () => {
+    expect(converter.convert('rkk')).toBe('가ㅏ')
+  })
+
+  it('should handle consecutive consonants: "rr" → "ㄱㄱ"', () => {
+    expect(converter.convert('rr')).toBe('ㄱㄱ')
+  })
+
+  it('should handle "rkrr" → "각ㄱ"', () => {
+    expect(converter.convert('rkrr')).toBe('각ㄱ')
+  })
+
+  it('should handle bare vowel then consonant: "kr" → "ㅏㄱ"', () => {
+    expect(converter.convert('kr')).toBe('ㅏㄱ')
+  })
+
+  it('should handle bare vowel + consonant + vowel: "krk" → "ㅏ가"', () => {
+    expect(converter.convert('krk')).toBe('ㅏ가')
+  })
+
+  it('should handle consecutive bare vowels: "kk" → "ㅏㅏ"', () => {
+    expect(converter.convert('kk')).toBe('ㅏㅏ')
+    expect(converter.convert('khl')).toBe('ㅏㅗㅣ')
+  })
+
+  it('should handle vowel from medial state (non-compound): "rhi" → "호ㅑ"', () => {
+    // r(ㄱ)+h(ㅗ) → 고, then i(ㅑ) is not compound with ㅗ → split
+    // Wait, r=ㄱ? No, let me re-check. Actually r=ㄱ, h=ㅗ → 고 (state O)
+    // i(ㅑ) from O is non-compound → "고ㅑ"
+    // Actually: r→V(0), h→O(1), i→B(.1). Code: "01.1"
+    // seg0: "rh"/"01" → hangulChar → ㄱ+ㅗ = 고
+    // seg1: "i"/"1" → vowelToJamo('i') = ㅑ
+    expect(converter.convert('rhi')).toBe('고ㅑ')
+  })
+
   it('should convert "rkfk" to "갈라" (dokkaebi case)', () => {
     // r(ㄱ) + k(ㅏ) + f(ㄹ) -> 갈, then f becomes final
     // but next is k(ㅏ) -> dokkaebi: 갈 loses ㄹ -> 가, ㄹ becomes 라
