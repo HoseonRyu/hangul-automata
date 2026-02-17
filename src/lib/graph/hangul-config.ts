@@ -132,7 +132,7 @@ export const hangulEdges: Edge[] = [
     source: 'S',
     target: 'V',
     type: 'transitionEdge',
-    data: { label: 'C / 0', categoryLabel: 'C', symbols: Array.from('rsefaqtdwczxvgREQTW') },
+    data: { label: 'C / 0', symbols: Array.from('rsefaqtdwczxvgREQTW') },
   },
   // S -> B (vowel input: bare vowel)
   {
@@ -140,7 +140,7 @@ export const hangulEdges: Edge[] = [
     source: 'S',
     target: 'B',
     type: 'transitionEdge',
-    data: { label: 'V / 1', categoryLabel: 'V', symbols: Array.from('kijuhynbmloOpP') },
+    data: { label: 'V / 1', symbols: Array.from('kijuhynbmloOpP') },
   },
   // V -> vowel states
   {
@@ -148,28 +148,28 @@ export const hangulEdges: Edge[] = [
     source: 'V',
     target: 'O',
     type: 'transitionEdge',
-    data: { label: 'h / 1', categoryLabel: 'o_h', symbols: ['h'] },
+    data: { label: 'h / 1', symbols: ['h'] },
   },
   {
     id: 'V-n-U',
     source: 'V',
     target: 'U',
     type: 'transitionEdge',
-    data: { label: 'n / 1', categoryLabel: 'o_n', symbols: ['n'] },
+    data: { label: 'n / 1', symbols: ['n'] },
   },
   {
     id: 'V-kiju-A',
     source: 'V',
     target: 'A',
     type: 'transitionEdge',
-    data: { label: 'k,i,j,u / 1', categoryLabel: 'a', symbols: ['k', 'i', 'j', 'u'] },
+    data: { label: 'k,i,j,u / 1', symbols: ['k', 'i', 'j', 'u'] },
   },
   {
     id: 'V-ybl-I',
     source: 'V',
     target: 'I',
     type: 'transitionEdge',
-    data: { label: 'y,b,l,o,O,p,P,m / 1', categoryLabel: 'v_t', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P', 'm'] },
+    data: { label: 'y,b,l,o,O,p,P,m / 1', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P', 'm'] },
   },
   // V -> V (consonant: standalone initial, new initial)
   {
@@ -177,7 +177,7 @@ export const hangulEdges: Edge[] = [
     source: 'V',
     target: 'V',
     type: 'transitionEdge',
-    data: { label: 'C / .0', categoryLabel: 'C', symbols: Array.from('rsefaqtdwczxvgREQTW') },
+    data: { label: 'C / .0', symbols: Array.from('rsefaqtdwczxvgREQTW') },
   },
   // O compound vowels
   {
@@ -217,28 +217,28 @@ export const hangulEdges: Edge[] = [
     source: 'O',
     target: 'B',
     type: 'transitionEdge',
-    data: { label: 'V\\{k,o,l} / .1', categoryLabel: 'V', symbols: Array.from('ijuhynbmOpP') },
+    data: { label: 'V\\{k,o,l} / .1', symbols: Array.from('ijuhynbmOpP') },
   },
   {
     id: 'U-V-B',
     source: 'U',
     target: 'B',
     type: 'transitionEdge',
-    data: { label: 'V\\{j,p,l} / .1', categoryLabel: 'V', symbols: Array.from('kiuhynbmoOP') },
+    data: { label: 'V\\{j,p,l} / .1', symbols: Array.from('kiuhynbmoOP') },
   },
   {
     id: 'A-V-B',
     source: 'A',
     target: 'B',
     type: 'transitionEdge',
-    data: { label: 'V / .1', categoryLabel: 'V', symbols: Array.from('kijuhynbmloOpP') },
+    data: { label: 'V / .1', symbols: Array.from('kijuhynbmloOpP') },
   },
   {
     id: 'I-V-B',
     source: 'I',
     target: 'B',
     type: 'transitionEdge',
-    data: { label: 'V\\l / .1', categoryLabel: 'V', symbols: Array.from('kijuhynbmoOpP') },
+    data: { label: 'V\\l / .1', symbols: Array.from('kijuhynbmoOpP') },
   },
   // Vowel states -> 종성 states
   {
@@ -246,28 +246,28 @@ export const hangulEdges: Edge[] = [
     source: 'A',
     target: 'K',
     type: 'transitionEdge',
-    data: { label: 'r,q / 2', categoryLabel: 'c_K', symbols: ['r', 'q'] },
+    data: { label: 'r,q / 2', symbols: ['r', 'q'] },
   },
   {
     id: 'OUAI-s-N',
     source: 'A',
     target: 'N',
     type: 'transitionEdge',
-    data: { label: 's / 2', categoryLabel: 'c_N', symbols: ['s'] },
+    data: { label: 's / 2', symbols: ['s'] },
   },
   {
     id: 'OUAI-f-R',
     source: 'A',
     target: 'R',
     type: 'transitionEdge',
-    data: { label: 'f / 2', categoryLabel: 'c_R', symbols: ['f'] },
+    data: { label: 'f / 2', symbols: ['f'] },
   },
   {
     id: 'OUAI-etc-L',
     source: 'A',
     target: 'L',
     type: 'transitionEdge',
-    data: { label: 'e,a,t,... / 2', categoryLabel: 'c_L', symbols: Array.from('eatdwczxvgRT') },
+    data: { label: 'e,a,t,... / 2', symbols: Array.from('eatdwczxvgRT') },
   },
   // 종성 -> vowel (dokkaebi: d.01)
   {
@@ -275,14 +275,14 @@ export const hangulEdges: Edge[] = [
     source: 'K',
     target: 'O',
     type: 'transitionEdge',
-    data: { label: 'h / d.01', categoryLabel: 'V', symbols: ['h'], isDokkaebi: true },
+    data: { label: 'h / d.01', symbols: ['h'], isDokkaebi: true },
   },
   {
     id: 'KNRL-vowel-A',
     source: 'K',
     target: 'A',
     type: 'transitionEdge',
-    data: { label: 'k,i,j,u / d.01', categoryLabel: 'V', symbols: ['k', 'i', 'j', 'u'], isDokkaebi: true },
+    data: { label: 'k,i,j,u / d.01', symbols: ['k', 'i', 'j', 'u'], isDokkaebi: true },
   },
   // 종성 -> I (dokkaebi with terminal vowels)
   {
@@ -290,7 +290,7 @@ export const hangulEdges: Edge[] = [
     source: 'K',
     target: 'I',
     type: 'transitionEdge',
-    data: { label: 'y,b,l,o,O,p,P,m / d.01', categoryLabel: 'V', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P', 'm'], isDokkaebi: true },
+    data: { label: 'y,b,l,o,O,p,P,m / d.01', symbols: ['y', 'b', 'l', 'o', 'O', 'p', 'P', 'm'], isDokkaebi: true },
   },
   // 종성 -> new syllable (consonant: .0)
   {
@@ -298,7 +298,7 @@ export const hangulEdges: Edge[] = [
     source: 'L',
     target: 'V',
     type: 'transitionEdge',
-    data: { label: 'C / .0', categoryLabel: 'C', symbols: Array.from('rsefaqtdwczxvgREQTW') },
+    data: { label: 'C / .0', symbols: Array.from('rsefaqtdwczxvgREQTW') },
   },
   // Compound 종성
   {
@@ -314,7 +314,7 @@ export const hangulEdges: Edge[] = [
     source: 'K',
     target: 'V',
     type: 'transitionEdge',
-    data: { label: 'C\\t / .0', categoryLabel: 'c', symbols: Array.from('rsefaqdwczxvgREQTW') },
+    data: { label: 'C\\t / .0', symbols: Array.from('rsefaqdwczxvgREQTW') },
   },
   // N compound
   {
@@ -329,7 +329,7 @@ export const hangulEdges: Edge[] = [
     source: 'N',
     target: 'V',
     type: 'transitionEdge',
-    data: { label: 'C\\wg / .0', categoryLabel: 'c', symbols: Array.from('rsefaqtdczxvREQTW') },
+    data: { label: 'C\\wg / .0', symbols: Array.from('rsefaqtdczxvREQTW') },
   },
   // R compound
   {
@@ -344,7 +344,7 @@ export const hangulEdges: Edge[] = [
     source: 'R',
     target: 'V',
     type: 'transitionEdge',
-    data: { label: 'C\\raqtxvg / .0', categoryLabel: 'c', symbols: Array.from('sefdwczEQTW') },
+    data: { label: 'C\\raqtxvg / .0', symbols: Array.from('sefdwczEQTW') },
   },
   // OUAI -> V (쌍자음으로 새 음절)
   {
@@ -352,7 +352,7 @@ export const hangulEdges: Edge[] = [
     source: 'A',
     target: 'V',
     type: 'transitionEdge',
-    data: { label: 'E,Q,W / .0', categoryLabel: 'D', symbols: ['E', 'Q', 'W'] },
+    data: { label: 'E,Q,W / .0', symbols: ['E', 'Q', 'W'] },
   },
   // B -> B (vowel: new bare vowel segment)
   {
@@ -360,7 +360,7 @@ export const hangulEdges: Edge[] = [
     source: 'B',
     target: 'B',
     type: 'transitionEdge',
-    data: { label: 'V / .1', categoryLabel: 'V', symbols: Array.from('kijuhynbmloOpP') },
+    data: { label: 'V / .1', symbols: Array.from('kijuhynbmloOpP') },
   },
   // B -> V (consonant: start new syllable)
   {
@@ -368,6 +368,6 @@ export const hangulEdges: Edge[] = [
     source: 'B',
     target: 'V',
     type: 'transitionEdge',
-    data: { label: 'C / .0', categoryLabel: 'C', symbols: Array.from('rsefaqtdwczxvgREQTW') },
+    data: { label: 'C / .0', symbols: Array.from('rsefaqtdwczxvgREQTW') },
   },
 ]
